@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import DefaultAppLayout from "./Layouts/AppLayout";
+import Inbox from "./Pages/Inbox";
 
 function App() {
   return (
@@ -16,9 +17,7 @@ function App() {
           </DefaultAppLayout>
         </Route>
         <Route path="/inbox" exact>
-          <DefaultAppLayout>
-            <h1>Inbox</h1>
-          </DefaultAppLayout>
+          <Inbox />
         </Route>
         <Route path="*">
           <div>
