@@ -1,60 +1,24 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import StylesTest from "./Components/StylesTest";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import DefaultAppLayout from "./Layouts/AppLayout";
 
 function App() {
   return (
     <Router>
       <Switch>
         <Route path="/" exact>
-          <div>
+          <DefaultAppLayout>
             <h1>Home Page</h1>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/inbox">Inbox</Link>
-              </li>
-            </ul>
-          </div>
+          </DefaultAppLayout>
         </Route>
         <Route path="/login" exact>
-          <div>
-            <h1>Login Page</h1>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/inbox">Inbox</Link>
-              </li>
-            </ul>
-          </div>
+          <DefaultAppLayout>
+            <h1>Login</h1>
+          </DefaultAppLayout>
         </Route>
         <Route path="/inbox" exact>
-          <div>
-            <h1>Inbox Page</h1>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/inbox">Inbox</Link>
-              </li>
-            </ul>
-          </div>
-        </Route>
-        <Route path="/styles" exact>
-          <StylesTest />
+          <DefaultAppLayout>
+            <h1>Inbox</h1>
+          </DefaultAppLayout>
         </Route>
         <Route path="*">
           <div>
