@@ -10,6 +10,9 @@ function App() {
             <h1>Home Page</h1>
             <ul>
               <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
                 <Link to="/login">Login</Link>
               </li>
               <li>
@@ -21,15 +24,33 @@ function App() {
         <Route path="/login" exact>
           <div>
             <h1>Login Page</h1>
-            <Link to="/login">Login</Link>
-            <Link to="/inbox">Inbox</Link>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/inbox">Inbox</Link>
+              </li>
+            </ul>
           </div>
         </Route>
         <Route path="/inbox" exact>
           <div>
             <h1>Inbox Page</h1>
-            <Link to="/login">Login</Link>
-            <Link to="/inbox">Inbox</Link>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/inbox">Inbox</Link>
+              </li>
+            </ul>
           </div>
         </Route>
         <Route path="/styles" exact>
