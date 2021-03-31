@@ -51,7 +51,7 @@ const ContactDetails = () => {
         {selectedContact?.notes?.map((note) => (
           <div className="note">
             <p>
-              <span className="note-date">Created: {note.date}</span> <br />
+              <span className="note-date">{note.date}</span> <br />
               {note.title}
             </p>
           </div>
@@ -100,6 +100,7 @@ const Wrapper = styled.div`
 
     .due-date {
       font-size: ${styleVariables.smallerTextSize};
+      color: ${styleVariables.accentColorBlue};
     }
   }
 
@@ -111,6 +112,7 @@ const Wrapper = styled.div`
     &::-webkit-scrollbar {
       display: none;
     }
+    padding-bottom: 100px; /* Scroll past last item*/
 
     .note {
       border-left: 2px dashed ${styleVariables.bgColor1};
@@ -119,6 +121,7 @@ const Wrapper = styled.div`
     .note-date {
       font-size: ${styleVariables.smallerTextSize};
       color: ${styleVariables.secondaryTextColor};
+      font-style: italic;
     }
   }
 `;

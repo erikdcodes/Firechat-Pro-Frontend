@@ -32,7 +32,7 @@ const Inbox = () => {
 const Wrapper = styled.div`
   display: flex;
   height: calc(100vh - 60px);
-
+  overflow: hidden;
   .center,
   .right {
     padding: ${styleVariables.padding1} ${styleVariables.padding3};

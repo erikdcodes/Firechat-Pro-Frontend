@@ -28,7 +28,8 @@ const DATA = [
     notes: [
       { title: "Here is a note", date: "03/21/2021" },
       {
-        title: "Here is a longer note. Have a look. Yes, its longer",
+        title:
+          "Double note. Here is a longer note. Have a look. Yes, its longer. Here is a longer note. Have a look. Yes, its longer",
         date: "03/21/2021",
       },
       { title: "Here is a note", date: "03/21/2021" },
