@@ -35,6 +35,12 @@ export const GlobalStyles = createGlobalStyle`
     /* border-color: ${styleVariables.bgColor1}; */
     /* box-shadow: none; */
     /* border-radius: 5px; */
+
   }
+
+  ::placeholder {
+      font-size: ${styleVariables.smallerTextSize};
+      font-style: italic;
+    }
 
 `;

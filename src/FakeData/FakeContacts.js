@@ -25,6 +25,23 @@ const DATA = [
         direction: "sent",
       },
     ],
+    notes: [
+      { title: "Here is a note", date: "03/21/2021" },
+      {
+        title: "Here is a longer note. Have a look. Yes, its longer",
+        date: "03/21/2021",
+      },
+      { title: "Here is a note", date: "03/21/2021" },
+      {
+        title: "Here is a longer note. Have a look. Yes, its longer",
+        date: "03/21/2021",
+      },
+      { title: "Here is a note", date: "03/21/2021" },
+      {
+        title: "Here is a longer note. Have a look. Yes, its longer",
+        date: "03/21/2021",
+      },
+    ],
   },
   {
     name: "Jim Smith",
@@ -78,6 +95,18 @@ const DATA = [
         direction: "sent",
       },
     ],
+    notes: [
+      { title: "Here is a note", date: "03/21/2021" },
+      {
+        title: "Here is a longer note. Have a look. Yes, its longer",
+        date: "03/21/2021",
+      },
+      { title: "Here is a note", date: "03/21/2021" },
+      {
+        title: "Here is a longer note. Have a look. Yes, its longer",
+        date: "03/21/2021",
+      },
+    ],
   },
   {
     name: "Fred Flinstone",
@@ -104,6 +133,7 @@ const DATA = [
         direction: "sent",
       },
     ],
+    notes: [],
   },
   {
     name: "",
@@ -128,6 +158,18 @@ const DATA = [
         message: "This is a message to erik. This is what it says. Alright",
         date: "March 21, 2021",
         direction: "sent",
+      },
+    ],
+    notes: [
+      { title: "Here is a note", date: "03/21/2021" },
+      {
+        title: "Here is a longer note. Have a look. Yes, its longer",
+        date: "03/21/2021",
+      },
+      { title: "Here is a note", date: "03/21/2021" },
+      {
+        title: "Here is a longer note. Have a look. Yes, its longer",
+        date: "03/21/2021",
       },
     ],
   },

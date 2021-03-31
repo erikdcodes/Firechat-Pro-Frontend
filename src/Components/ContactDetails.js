@@ -44,6 +44,19 @@ const ContactDetails = () => {
         </label>
         <p className="due-date">Due: 03/21/2021</p>
       </div>
+
+      <div className="notes">
+        <h4>Notes</h4>
+        <input type="text" placeholder="add a note" />
+        {selectedContact?.notes?.map((note) => (
+          <div className="note">
+            <p>
+              <span className="note-date">Created: {note.date}</span> <br />
+              {note.title}
+            </p>
+          </div>
+        ))}
+      </div>
     </Wrapper>
   );
 };
@@ -87,6 +100,25 @@ const Wrapper = styled.div`
 
     .due-date {
       font-size: ${styleVariables.smallerTextSize};
+    }
+  }
+
+  .notes {
+    height: 400px;
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .note {
+      border-left: 2px dashed ${styleVariables.bgColor1};
+      padding-left: 30px;
+    }
+    .note-date {
+      font-size: ${styleVariables.smallerTextSize};
+      color: ${styleVariables.secondaryTextColor};
     }
   }
 `;

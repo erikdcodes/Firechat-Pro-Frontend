@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Search = () => {
   return (
     <Wrapper>
-      <input type="text" />
+      <input type="text" placeholder="search by name or phone" />
     </Wrapper>
   );
 };
