@@ -21,10 +21,20 @@ export const GlobalStyles = createGlobalStyle`
   a {
     text-decoration: none;
     color: ${styleVariables.accentTextColor};
-    
+
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  input[type=text] {
+    padding: ${styleVariables.padding};
+    width: 100%;
+    color: ${styleVariables.secondaryTextColor};
+    margin-bottom: ${styleVariables.padding}
+    /* border-color: ${styleVariables.bgColor1}; */
+    /* box-shadow: none; */
+    /* border-radius: 5px; */
   }
 
 `;

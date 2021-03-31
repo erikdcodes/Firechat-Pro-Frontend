@@ -56,9 +56,13 @@ const Wrapper = styled.div`
 
   .nav-menu {
     & ul {
+      margin: 0;
       list-style: none;
       display: flex;
       padding: 0;
+    }
+
+    & li {
     }
 
     & li:not(:last-child) {
@@ -74,6 +78,7 @@ const Wrapper = styled.div`
       &.selected {
         text-decoration: none;
         color: ${styleVariables.accentTextColor};
+        border-bottom: 2px solid ${styleVariables.accentTextColor};
       }
     }
   }
