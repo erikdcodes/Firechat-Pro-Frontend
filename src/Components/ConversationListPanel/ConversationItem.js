@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { styleVariables } from "../GlobalStyles/StyleVariables";
+import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import { useSetRecoilState } from "recoil";
-import { selectedContactState } from "../Store/UIState";
+import { selectedContactState } from "../../Store/UIState";
 
 const ConversationItem = (props) => {
   const { name, phone, messages } = props.contact;
