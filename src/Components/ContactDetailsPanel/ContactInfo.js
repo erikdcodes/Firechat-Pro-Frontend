@@ -102,6 +102,7 @@ const ContactInfo = () => {
 
 const Wrapper = styled.div`
   cursor: pointer;
+  user-select: none;
 
   .header {
     height: 100px;

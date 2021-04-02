@@ -105,5 +105,4 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
-
 `;
