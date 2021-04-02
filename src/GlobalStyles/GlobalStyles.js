@@ -19,6 +19,7 @@ export const GlobalStyles = createGlobalStyle`
   h3 {font-size: ${styleVariables.heading3Size}};
   h4, h5, h6 {font-size: ${styleVariables.heading4Size}};
 
+
   a {
     text-decoration: none;
     color: ${styleVariables.accentTextColor};

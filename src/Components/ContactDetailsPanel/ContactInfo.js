@@ -155,17 +155,6 @@ const Wrapper = styled.div`
     justify-content: flex-end;
     border-bottom: 2px solid ${styleVariables.bgColor1};
   }
-
-  ::-moz-selection {
-    /* Code for Firefox */
-    color: red;
-    background: yellow;
-  }
-
-  ::selection {
-    color: red;
-    background: yellow;
-  }
 `;
 
 export default ContactInfo;
