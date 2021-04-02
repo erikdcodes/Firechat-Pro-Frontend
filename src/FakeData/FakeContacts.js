@@ -1,5 +1,6 @@
 const DATA = [
   {
+    id: "hasfdlkj234234",
     name: "Jon De Soula",
     phone: "+19095481103",
     nextAction: {
@@ -49,6 +50,7 @@ const DATA = [
     ],
   },
   {
+    id: "hasfdasdf23lkj234234",
     name: "Jim Smith",
     phone: "+19095481103",
     background: "Here's some info about this person",
@@ -80,6 +82,7 @@ const DATA = [
     ],
   },
   {
+    id: "h22asfdlkj23423334555",
     name: "",
     phone: "+19095481103",
     messages: [
@@ -118,6 +121,7 @@ const DATA = [
     ],
   },
   {
+    id: "hasgasgl33kj234234",
     name: "Fred Flinstone",
     phone: "+19095481103",
     messages: [
@@ -145,6 +149,7 @@ const DATA = [
     notes: [],
   },
   {
+    id: "jk09sdflkjasdf",
     name: "",
     phone: "+7143331234",
     messages: [
@@ -183,6 +188,7 @@ const DATA = [
     ],
   },
   {
+    id: "lksg9galksjdg-asdgks",
     name: "",
     phone: "+7143331234",
     nextAction: {
