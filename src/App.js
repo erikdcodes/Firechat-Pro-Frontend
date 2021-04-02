@@ -20,9 +20,9 @@ function App() {
           <Inbox />
         </Route>
         <Route path="*">
-          <div>
+          <DefaultAppLayout>
             <h1>404 Not Found</h1>
-          </div>
+          </DefaultAppLayout>
         </Route>
       </Switch>
     </Router>
