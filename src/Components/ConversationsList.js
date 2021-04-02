@@ -5,7 +5,7 @@ import ConversationItem from "./ConversationItem";
 import data from "../FakeData/FakeContacts.js";
 
 const ConversationsList = () => {
-  const [activeLink, setActiveLink] = useState("ALL");
+  const [activeLink, setActiveLink] = useState("ACTIVE");
 
   return (
     <Wrapper>

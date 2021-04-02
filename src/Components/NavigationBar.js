@@ -21,21 +21,22 @@ const NavigationBar = () => {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink to="/inbox" activeClassName="selected">
+            <NavLink to="/contacts" activeClassName="selected">
               Contacts
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink to="/inbox" activeClassName="selected">
+            <NavLink to="/faq" activeClassName="selected">
               FAQ
             </NavLink>
           </li>
         </ul>
       </nav>
       <div className="profile-link-container">
-        <NavLink to="/inbox" activeClassName="selected">
+        <NavLink to="/profile " activeClassName="selected">
           Profile
         </NavLink>
+        <span> (909) 541-1134</span>
       </div>
     </Wrapper>
   );
