@@ -105,4 +105,24 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
+// custom scroll/track bar
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: ${styleVariables.bgColor1};
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: ${darken(0.1, styleVariables.bgColor1)};
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: ${darken(0.2, styleVariables.bgColor1)};
+}
 `;
