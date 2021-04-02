@@ -24,7 +24,7 @@ const ConversationsList = () => {
         </button>
       </div>
       {data.map((item, i) => (
-        <ConversationItem contact={item} key={i} />
+        <ConversationItem contact={item} key={item.id} />
       ))}
     </Wrapper>
   );
@@ -36,11 +36,11 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     border-bottom: 2px solid ${styleVariables.bgColor1};
-  }
 
-  .selected {
-    color: ${styleVariables.accentColorBlue};
-    background: transparent;
+    .selected {
+      color: ${styleVariables.accentColorBlue};
+      background: transparent;
+    }
   }
 `;
 

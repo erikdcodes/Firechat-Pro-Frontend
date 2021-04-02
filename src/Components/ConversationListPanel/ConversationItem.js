@@ -1,28 +1,38 @@
 import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
 
 const ConversationItem = (props) => {
-  const { name, phone, messages } = props.contact;
+  const { id, name, phone, messages } = props.contact;
   const lastMessage = messages[messages.length - 1];
 
-  const setSelectedContact = useSetRecoilState(selectedContactState);
+  const [selectedContact, setSelectedContact] = useRecoilState(
+    selectedContactState
+  );
 
   return (
     <Wrapper onClick={() => setSelectedContact(props.contact)}>
-      <div className="conversation-header">
-        <div>{name ? name : phone}</div>
-        <div className="date">{lastMessage?.date}</div>
+      <div
+        className={
+          selectedContact?.id === id ? "selected container" : "container"
+        }
+      >
+        <div className="conversation-header">
+          <div className="name">{name ? name : phone}</div>
+          <div className="date">{lastMessage?.date}</div>
+        </div>
+        <div className="message">{lastMessage?.message}</div>
       </div>
-      <div className="message">{lastMessage?.message}</div>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  padding: 10px 30px;
-  border-bottom: 2px solid ${styleVariables.bgColor1};
+  .container {
+    padding: 10px 30px;
+    border-bottom: 2px solid ${styleVariables.bgColor1};
+  }
 
   .conversation-header {
     margin-bottom: 5px;
@@ -48,7 +58,7 @@ const Wrapper = styled.div`
   }
 
   .selected {
-    background: ${styleVariables.bgColor1};
+    background-color: ${styleVariables.bgColor1};
   }
 `;
 

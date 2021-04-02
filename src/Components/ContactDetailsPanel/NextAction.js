@@ -40,7 +40,7 @@ const NextAction = () => {
         <div className="next-action">
           <h4>Next Action</h4>
           <input type="checkbox" name="next-action-item" />
-          <label style={{ marginLeft: "10px" }} for="next-action-item">
+          <label style={{ marginLeft: "10px" }} htmlFor="next-action-item">
             Next action item goes here
           </label>
           <p className="due-date">Due: 03/21/2021</p>

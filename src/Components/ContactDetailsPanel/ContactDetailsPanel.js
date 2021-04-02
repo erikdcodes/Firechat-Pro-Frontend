@@ -18,8 +18,8 @@ const ContactDetails = () => {
       <div className="notes">
         <h4>Notes</h4>
         <input type="text" placeholder="add a note" />
-        {selectedContact?.notes?.map((note) => (
-          <div className="note">
+        {selectedContact?.notes?.map((note, i) => (
+          <div key={i} className="note">
             <p>
               <span className="note-date">{note.date}</span> <br />
               {note.title}
