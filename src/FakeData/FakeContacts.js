@@ -2,6 +2,10 @@ const DATA = [
   {
     name: "Jon De Soula",
     phone: "+19095481103",
+    nextAction: {
+      task: "Heres the next action for this person. What get in touch",
+      dueDate: "03/21/2021",
+    },
     background: "Here's some info about this person",
     messages: [
       {
@@ -48,6 +52,10 @@ const DATA = [
     name: "Jim Smith",
     phone: "+19095481103",
     background: "Here's some info about this person",
+    nextAction: {
+      task: "Heres the next action for this person. What get in touch",
+      dueDate: "03/21/2021",
+    },
     messages: [
       {
         message: "This is a message from erik. This is what it says. Alright",
@@ -177,6 +185,10 @@ const DATA = [
   {
     name: "",
     phone: "+7143331234",
+    nextAction: {
+      task: "Heres the next action for this person. What get in touch",
+      dueDate: "03/21/2021",
+    },
     messages: [],
   },
 ];

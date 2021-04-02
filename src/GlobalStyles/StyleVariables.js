@@ -16,6 +16,7 @@ export const styleVariables = {
   accentColorGreen: "#2ECA72",
   accentColorOrange: "#FF855C",
   accentColorPink: "#EC63D2",
+  accentColorRed: "#EC6363",
   bgColor1: "#F1F2F5",
   heading1Size: "32px",
   heading2Size: "24px",
