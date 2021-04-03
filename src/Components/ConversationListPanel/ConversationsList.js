@@ -25,7 +25,7 @@ const ConversationsList = () => {
       </div>
       <div className="list-wrapper">
         {data.map((item, i) => (
-          <ConversationItem contact={item} key={item.id} />
+          <ConversationItem contact={item} key={i + item.id} />
         ))}
       </div>
     </Wrapper>

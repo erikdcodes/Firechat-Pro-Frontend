@@ -3,10 +3,14 @@ import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import { useRecoilValue } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
 
 const NextAction = () => {
   const selectedContact = useRecoilValue(selectedContactState);
   const [isEditing, setIsEditing] = useState(false);
+
+  const [startDate, setStartDate] = useState(new Date());
 
   if (isEditing) {
     return (
@@ -18,10 +22,17 @@ const NextAction = () => {
             name="next-action-item"
             placeholder="add next action"
           />
-          <input
+          {/* <input
             type="text"
             name="next-action-due-date"
             placeholder="add due date"
+          /> */}
+
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            showTimeSelect
+            dateFormat="Pp"
           />
         </div>
         <div className="button-container">
@@ -43,7 +54,7 @@ const NextAction = () => {
           <label style={{ marginLeft: "10px" }} htmlFor="next-action-item">
             Next action item goes here
           </label>
-          <p className="due-date">Due: 03/21/2021</p>
+          <p className="due-date">Due: {startDate.toLocaleString()}</p>
         </div>
       </Wrapper>
     );
