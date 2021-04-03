@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
+import { darken } from "polished";
 
 const Notes = () => {
   const selectedContact = useRecoilValue(selectedContactState);
@@ -33,8 +34,10 @@ const Wrapper = styled.div`
   }
 
     .note {
-      border-left: 2px dashed ${styleVariables.bgColor1};
+      border-left: 2px dashed ${darken(0.05, styleVariables.bgColor1)};
+      padding: 5px 0;
       padding-left: 30px;
+      margin: 15px 0;
       
     }
     .note-date {

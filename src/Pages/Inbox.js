@@ -2,7 +2,7 @@ import styled from "styled-components";
 import AppLayout from "../Layouts/AppLayout";
 import { styleVariables } from "../GlobalStyles/StyleVariables.js";
 import ConversationsList from "../Components/ConversationListPanel/ConversationsList";
-import Search from "../Components/Search";
+import SearchContacts from "../Components/SearchContacts";
 import { useRecoilValue } from "recoil";
 import { selectedContactState } from "../Store/UIState";
 import ContactDetailsPanel from "../Components/ContactDetailsPanel/ContactDetailsPanel";
@@ -14,7 +14,7 @@ const Inbox = () => {
     <AppLayout>
       <Wrapper>
         <div className="left">
-          <Search />
+          <SearchContacts />
           <ConversationsList />
         </div>
         <div className="center">

@@ -61,7 +61,7 @@ const NextAction = () => {
   } else {
     return (
       <Wrapper>
-        <div className="next-action hoverable">
+        <div className="next-action">
           <h4>Next Action</h4>
           <button onClick={() => setIsEditing(true)} className="link">
             Click to Add Next Action
@@ -81,10 +81,6 @@ const Wrapper = styled.div`
       font-size: ${styleVariables.smallerTextSize};
       color: ${styleVariables.accentColorBlue};
     }
-  }
-
-  .hoverable {
-    cursor: pointer;
   }
 
   .button-container {
