@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import { useRecoilValue } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
+import ReactTooltip from "react-tooltip";
+
 // import dots from "../../Images/dots.svg";
 
 const ContactInfo = () => {
@@ -69,7 +71,11 @@ const ContactInfo = () => {
     );
 
   return (
-    <Wrapper onDoubleClick={() => setIsEditing(true)}>
+    <Wrapper
+      data-tip="Double-click to EDIT"
+      onDoubleClick={() => setIsEditing(true)}
+    >
+      <ReactTooltip delayShow={500} effect="solid" />
       <div className="header">
         {selectedContact.name ? (
           <div className="name"> {selectedContact.name} </div>
