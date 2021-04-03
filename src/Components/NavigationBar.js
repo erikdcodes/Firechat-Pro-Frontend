@@ -39,11 +39,6 @@ const NavigationBar = () => {
         <nav className="nav-menu">
           <ul>
             <li className="nav-item">
-              <NavLink to="/" activeClassName="selected" exact>
-                Home
-              </NavLink>
-            </li>
-            <li className="nav-item">
               <NavLink to="/inbox" activeClassName="selected">
                 Inbox
               </NavLink>

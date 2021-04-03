@@ -3,6 +3,10 @@ import { styleVariables } from "./StyleVariables.js";
 import { darken } from "polished";
 
 export const GlobalStyles = createGlobalStyle`
+* {
+  margin: 0;
+
+}
   body {
     font-family: "Montserrat", sans-serif;
     line-height: 1.5;
@@ -12,6 +16,7 @@ export const GlobalStyles = createGlobalStyle`
   h1, h2, h3, h4 ,h5, h6 {
     font-weight: 700;
     line-height: 1.25;
+    margin-bottom: 5px;  
   }
 
   h1 {font-size: ${styleVariables.heading1Size}};

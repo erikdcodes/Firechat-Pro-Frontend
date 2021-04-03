@@ -74,6 +74,7 @@ const NextAction = () => {
 
 const Wrapper = styled.div`
   .next-action {
+    padding: 10px 0;
     border-bottom: 2px solid ${styleVariables.bgColor1};
 
     .due-date {

@@ -72,7 +72,7 @@ const ContactInfo = () => {
 
   return (
     <Wrapper
-      data-tip="Double-click to EDIT"
+      data-tip="Double-click to edit"
       onDoubleClick={() => setIsEditing(true)}
     >
       <ReactTooltip delayShow={500} effect="solid" />
@@ -111,8 +111,8 @@ const Wrapper = styled.div`
   user-select: none;
 
   .header {
-    height: 100px;
     border-bottom: 2px solid ${styleVariables.bgColor1};
+    padding: 10px 0;
 
     .name {
       font-size: 24px;
