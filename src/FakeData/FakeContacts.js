@@ -151,7 +151,7 @@ const DATA = [
   {
     id: "jk09sdflkjasdf",
     name: "",
-    phone: "+7143331234",
+    phone: "+17143235581",
     messages: [
       {
         message: "This is a message from erik. This is what it says. Alright",
@@ -190,7 +190,7 @@ const DATA = [
   {
     id: "lksg9galksjdg-asdgks",
     name: "",
-    phone: "+7143331234",
+    phone: "+17143235581",
     nextAction: {
       task: "Heres the next action for this person. What get in touch",
       dueDate: "03/21/2021",
@@ -267,7 +267,7 @@ const DATA = [
   {
     id: "jk09sdflkjasdf",
     name: "",
-    phone: "+7143331234",
+    phone: "+17143235581",
     messages: [
       {
         message: "This is a message from erik. This is what it says. Alright",
@@ -306,7 +306,7 @@ const DATA = [
   {
     id: "lksg9galksjdg-asdgks",
     name: "",
-    phone: "+7143331234",
+    phone: "+17143235581",
     nextAction: {
       task: "Heres the next action for this person. What get in touch",
       dueDate: "03/21/2021",

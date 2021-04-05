@@ -1,19 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import { useRecoilValue } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
 import ReactTooltip from "react-tooltip";
-
-// import dots from "../../Images/dots.svg";
+import Input, { formatPhoneNumber } from "react-phone-number-input/input";
 
 const ContactInfo = () => {
   const selectedContact = useRecoilValue(selectedContactState);
 
   const [isEditing, setIsEditing] = useState(false);
+  const [phoneValue, setPhoneValue] = useState(selectedContact?.phone);
+
+  // resets phone value when new contact selected & closes editing form
+  useEffect(() => {
+    setPhoneValue(selectedContact?.phone);
+    setIsEditing(false);
+  }, [selectedContact]);
 
   if (!selectedContact) return "";
-  if (isEditing)
+  else if (isEditing)
     return (
       <Wrapper>
         <div className="header">
@@ -43,10 +49,11 @@ const ContactInfo = () => {
           <div className="form-group">
             <span className=" icon pink">P:</span>
             <div className="input-wrapper">
-              <input
-                type="text"
-                placeholder="add phone"
-                defaultValue={selectedContact.phone}
+              <Input
+                defaultCountry="US"
+                placeholder="Enter phone number"
+                value={phoneValue}
+                onChange={setPhoneValue}
               />
             </div>
           </div>
@@ -69,41 +76,41 @@ const ContactInfo = () => {
         </div>
       </Wrapper>
     );
+  else
+    return (
+      <Wrapper
+        data-tip="Double-click to edit"
+        onDoubleClick={() => setIsEditing(true)}
+      >
+        <ReactTooltip delayShow={500} effect="solid" />
+        <div className="header">
+          {selectedContact.name ? (
+            <div className="name"> {selectedContact.name} </div>
+          ) : (
+            <div className="name missing">Add name</div>
+          )}
 
-  return (
-    <Wrapper
-      data-tip="Double-click to edit"
-      onDoubleClick={() => setIsEditing(true)}
-    >
-      <ReactTooltip delayShow={500} effect="solid" />
-      <div className="header">
-        {selectedContact.name ? (
-          <div className="name"> {selectedContact.name} </div>
-        ) : (
-          <div className="name missing">Add name</div>
-        )}
+          {selectedContact.background ? (
+            selectedContact.background
+          ) : (
+            <div className="missing">Add background info</div>
+          )}
+        </div>
 
-        {selectedContact.background ? (
-          selectedContact.background
-        ) : (
-          <div className="missing">Add background info</div>
-        )}
-      </div>
-
-      <div className="contact-info">
-        <p>
-          <span className=" icon orange">E:</span> {selectedContact?.email}
-        </p>
-        <p>
-          <span className=" icon pink">P:</span>
-          {selectedContact?.phone}
-        </p>
-        <p>
-          <span className=" icon green">A:</span> {selectedContact?.address}
-        </p>
-      </div>
-    </Wrapper>
-  );
+        <div className="contact-info">
+          <p>
+            <span className=" icon orange">E:</span> {selectedContact?.email}
+          </p>
+          <p>
+            <span className=" icon pink">P: </span>
+            {formatPhoneNumber(selectedContact?.phone)}
+          </p>
+          <p>
+            <span className=" icon green">A:</span> {selectedContact?.address}
+          </p>
+        </div>
+      </Wrapper>
+    );
 };
 
 const Wrapper = styled.div`

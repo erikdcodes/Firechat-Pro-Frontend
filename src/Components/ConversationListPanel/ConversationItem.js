@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import { useRecoilState } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
+import { formatPhoneNumber } from "react-phone-number-input/input";
 
 const ConversationItem = (props) => {
   const { id, name, phone, messages } = props.contact;
@@ -19,7 +20,7 @@ const ConversationItem = (props) => {
         }
       >
         <div className="conversation-header">
-          <div className="name">{name ? name : phone}</div>
+          <div className="name">{name ? name : formatPhoneNumber(phone)}</div>
           <div className="date">{lastMessage?.date}</div>
         </div>
         <div className="message">{lastMessage?.message}</div>
