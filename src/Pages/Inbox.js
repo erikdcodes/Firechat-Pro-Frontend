@@ -6,6 +6,8 @@ import SearchContacts from "../Components/SearchContacts";
 import { useRecoilValue } from "recoil";
 import { selectedContactState } from "../Store/UIState";
 import ContactDetailsPanel from "../Components/ContactDetailsPanel/ContactDetailsPanel";
+import MessagesList from "../Components/MessagesPanel/MessagesList";
+import MessagesPanel from "../Components/MessagesPanel/MessagesPanel";
 
 const Inbox = () => {
   const selectedContact = useRecoilValue(selectedContactState);
@@ -18,8 +20,7 @@ const Inbox = () => {
           <ConversationsList />
         </div>
         <div className="center">
-          <div>{selectedContact?.name}</div>
-          <div>{selectedContact?.phone}</div>
+          <MessagesPanel />
         </div>
         <div className="right">
           <ContactDetailsPanel />

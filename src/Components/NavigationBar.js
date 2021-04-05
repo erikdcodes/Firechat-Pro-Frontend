@@ -44,6 +44,11 @@ const NavigationBar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
+              <NavLink to="/actions" activeClassName="selected">
+                Actions
+              </NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink to="/contacts" activeClassName="selected">
                 Contacts
               </NavLink>
