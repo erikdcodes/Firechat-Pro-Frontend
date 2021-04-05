@@ -34,7 +34,7 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
-  input[type=text] {
+  input:not([type='checkbox']) {
     padding: ${styleVariables.padding};
     width: 100%;
     color: ${styleVariables.primaryTextColor};
