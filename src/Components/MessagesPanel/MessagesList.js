@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
@@ -5,14 +6,25 @@ import Message from "../MessagesPanel/Message";
 
 const MessagesList = () => {
   const selectedContact = useRecoilValue(selectedContactState);
+  const listEnd = useRef(null);
+
+  useEffect(() => {
+    listEnd.current?.scrollIntoView({
+      block: "nearest",
+      inline: "start",
+    });
+  }, [selectedContact]);
 
   if (!selectedContact) return "";
 
   return (
     <Wrapper className="hide-scrollbar">
-      {selectedContact.messages.map((message, i) => (
-        <Message key={i} message={message} />
-      ))}
+      <div>
+        {selectedContact.messages.map((message, i) => (
+          <Message key={i} message={message} />
+        ))}
+        <div ref={listEnd}></div>
+      </div>
     </Wrapper>
   );
 };
