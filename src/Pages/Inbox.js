@@ -3,15 +3,10 @@ import AppLayout from "../Layouts/AppLayout";
 import { styleVariables } from "../GlobalStyles/StyleVariables.js";
 import ConversationsList from "../Components/ConversationListPanel/ConversationsList";
 import SearchContacts from "../Components/SearchContacts";
-import { useRecoilValue } from "recoil";
-import { selectedContactState } from "../Store/UIState";
 import ContactDetailsPanel from "../Components/ContactDetailsPanel/ContactDetailsPanel";
-import MessagesList from "../Components/MessagesPanel/MessagesList";
 import MessagesPanel from "../Components/MessagesPanel/MessagesPanel";
 
 const Inbox = () => {
-  const selectedContact = useRecoilValue(selectedContactState);
-
   return (
     <AppLayout>
       <Wrapper>
@@ -40,6 +35,7 @@ const Wrapper = styled.div`
   }
 
   .left {
+    flex-shrink: 0;
     width: 300px;
     border-right: 2px solid ${styleVariables.bgColor1};
 
@@ -50,9 +46,12 @@ const Wrapper = styled.div`
 
   .center {
     flex-grow: 1;
+    flex-shrink: 1;
   }
 
   .right {
+    flex-shrink: 0;
+
     width: 450px;
     border-left: 2px solid ${styleVariables.bgColor1};
   }

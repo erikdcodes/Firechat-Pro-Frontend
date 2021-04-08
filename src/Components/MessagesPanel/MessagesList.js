@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
+import Message from "../MessagesPanel/Message";
 
 const MessagesList = () => {
   const selectedContact = useRecoilValue(selectedContactState);
@@ -8,22 +9,19 @@ const MessagesList = () => {
   if (!selectedContact) return "";
 
   return (
-    <Wrapper>
-      {selectedContact.messages.map((item) => (
-        <div>{item.message}</div>
+    <Wrapper className="hide-scrollbar">
+      {selectedContact.messages.map((message, i) => (
+        <Message key={i} message={message} />
       ))}
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  height: calc(100% - 100px);
+  width: 100%;
+  height: calc(100% - 195px);
   overflow-y: scroll;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  padding-top: 10px;
 `;
 
 export default MessagesList;

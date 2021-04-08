@@ -13,7 +13,7 @@ const ContactDetails = () => {
   return (
     <Wrapper>
       <ContactInfo />
-      <NextAction />
+      {/* <NextAction /> */}
       <Notes />
     </Wrapper>
   );

@@ -5,12 +5,15 @@ import { useRecoilValue } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
+import { darken } from "polished";
 
 const NextAction = () => {
   const selectedContact = useRecoilValue(selectedContactState);
   const [isEditing, setIsEditing] = useState(false);
 
   const [startDate, setStartDate] = useState(new Date());
+
+  if (!selectedContact) return "";
 
   if (isEditing) {
     return (
@@ -73,9 +76,13 @@ const NextAction = () => {
 };
 
 const Wrapper = styled.div`
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, .5)}; */
+  z-index: 999;
+  position: relative;
+
   .next-action {
     padding: 10px 0;
-    border-bottom: 2px solid ${styleVariables.bgColor1};
+    border-bottom: 2px solid ${darken(0.1, styleVariables.bgColor1)};
 
     .due-date {
       font-size: ${styleVariables.smallerTextSize};

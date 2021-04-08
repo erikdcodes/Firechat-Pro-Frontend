@@ -12,7 +12,7 @@ const Notes = () => {
       <div className="notes">
         <h4>Notes</h4>
         <input type="text" placeholder="add a note" />
-        <div className="notes-wrapper">
+        <div className="notes-wrapper hide-scrollbar">
           {selectedContact?.notes?.map((note, i) => (
             <div key={i} className="note">
               <p>
@@ -51,11 +51,7 @@ const Wrapper = styled.div`
     height: 400px;
     padding-bottom: 100px; /* Scroll past last item*/
     overflow-y: scroll;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-    &::-webkit-scrollbar {
-      display: none;
-    }
+
     `;
 
 export default Notes;

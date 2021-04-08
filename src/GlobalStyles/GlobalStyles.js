@@ -130,4 +130,12 @@ export const GlobalStyles = createGlobalStyle`
 ::-webkit-scrollbar-thumb:hover {
   background: ${darken(0.2, styleVariables.bgColor1)};
 }
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 `;

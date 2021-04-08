@@ -23,7 +23,7 @@ const ConversationItem = (props) => {
           <div className="name">{name ? name : formatPhoneNumber(phone)}</div>
           <div className="date">{lastMessage?.date}</div>
         </div>
-        <div className="message">{lastMessage?.message}</div>
+        <div className="message">{lastMessage?.message.substring(0, 50)}</div>
       </div>
     </Wrapper>
   );
