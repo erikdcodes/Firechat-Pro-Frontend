@@ -30,7 +30,6 @@ const NextAction = () => {
             name="next-action-due-date"
             placeholder="add due date"
           /> */}
-
           <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
@@ -76,7 +75,6 @@ const NextAction = () => {
 };
 
 const Wrapper = styled.div`
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, .5)}; */
   z-index: 999;
   position: relative;
 
