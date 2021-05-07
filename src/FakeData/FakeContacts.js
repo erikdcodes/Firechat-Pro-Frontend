@@ -4,7 +4,7 @@ const DATA = [
     name: "Jon De Soula",
     phone: "+19095481103",
     nextAction: {
-      task: "Heres the next action for this person. What get in touch",
+      task: "Call Jon about quote",
       dueDate: "03/21/2021",
     },
     background: "Here's some info about this person",
@@ -123,7 +123,7 @@ const DATA = [
     id: "hasfdasdf23lkj234234",
     name: "Jim Smith",
     phone: "+19095481103",
-    background: "Here's some info about this person",
+    background: "Send email regarding odometer",
     nextAction: {
       task: "Heres the next action for this person. What get in touch",
       dueDate: "03/21/2021",
@@ -156,7 +156,7 @@ const DATA = [
     name: "",
     phone: "+19095481103",
     nextAction: {
-      task: "Heres the next action for this person. What get in touch",
+      task: "Need to get remaining down payment",
       dueDate: "03/21/2021",
     },
     messages: [
