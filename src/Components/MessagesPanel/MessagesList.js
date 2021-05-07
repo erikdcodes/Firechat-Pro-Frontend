@@ -11,7 +11,6 @@ const MessagesList = () => {
   useEffect(() => {
     listEnd.current?.scrollIntoView({
       block: "nearest",
-      inline: "start",
     });
   }, [selectedContact]);
 

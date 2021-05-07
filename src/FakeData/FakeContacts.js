@@ -155,6 +155,10 @@ const DATA = [
     id: "h22asfdlkj23423334555",
     name: "",
     phone: "+19095481103",
+    nextAction: {
+      task: "Heres the next action for this person. What get in touch",
+      dueDate: "03/21/2021",
+    },
     messages: [
       {
         message: "This is a message from erik. This is what it says. Alright",

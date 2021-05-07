@@ -1,11 +1,15 @@
 import styled from "styled-components";
 import { styleVariables } from "../GlobalStyles/StyleVariables.js";
 import { NavLink } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { loggedInState } from "../Store/UIState";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { loggedInState, selectedContactState } from "../Store/UIState";
 
 const NavigationBar = () => {
   const loggedIn = useRecoilValue(loggedInState);
+  const setSelectedContactState = useSetRecoilState(selectedContactState);
+  const resetSelectedContact = () => {
+    setSelectedContactState(null);
+  };
 
   if (!loggedIn)
     return (
@@ -16,12 +20,22 @@ const NavigationBar = () => {
         <nav className="nav-menu">
           <ul>
             <li className="nav-item">
-              <NavLink to="/" activeClassName="selected" exact>
+              <NavLink
+                to="/"
+                activeClassName="selected"
+                onClick={resetSelectedContact}
+                exact
+              >
                 Home
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/login" activeClassName="selected" exact>
+              <NavLink
+                to="/login"
+                activeClassName="selected"
+                onClick={resetSelectedContact}
+                exact
+              >
                 Login
               </NavLink>
             </li>
@@ -39,29 +53,49 @@ const NavigationBar = () => {
         <nav className="nav-menu">
           <ul>
             <li className="nav-item">
-              <NavLink to="/inbox" activeClassName="selected">
+              <NavLink
+                to="/inbox"
+                activeClassName="selected"
+                onClick={resetSelectedContact}
+              >
                 Inbox
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/actions" activeClassName="selected">
+              <NavLink
+                to="/actions"
+                activeClassName="selected"
+                onClick={resetSelectedContact}
+              >
                 Actions
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/contacts" activeClassName="selected">
+              <NavLink
+                to="/contacts"
+                activeClassName="selected"
+                onClick={resetSelectedContact}
+              >
                 Contacts
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/faq" activeClassName="selected">
+              <NavLink
+                to="/faq"
+                activeClassName="selected"
+                onClick={resetSelectedContact}
+              >
                 FAQ
               </NavLink>
             </li>
           </ul>
         </nav>
         <div className="profile-link-container">
-          <NavLink to="/profile " activeClassName="selected">
+          <NavLink
+            to="/profile "
+            activeClassName="selected"
+            onClick={resetSelectedContact}
+          >
             Profile
           </NavLink>
           <span> (909) 541-1134</span>
