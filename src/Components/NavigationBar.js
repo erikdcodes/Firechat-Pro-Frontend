@@ -15,7 +15,9 @@ const NavigationBar = () => {
     return (
       <Wrapper>
         <div className="logo-container">
-          <h1 className="logo">🔥 Fire Chat</h1>
+          <a href="/">
+            <h1 className="logo">🔥 Fire Chat</h1>
+          </a>
         </div>
         <nav className="nav-menu">
           <ul>
@@ -48,7 +50,9 @@ const NavigationBar = () => {
     return (
       <Wrapper>
         <div className="logo-container">
-          <h1 className="logo">🔥 Fire Chat</h1>
+          <a href="/">
+            <h1 className="logo">🔥 Fire Chat</h1>
+          </a>
         </div>
         <nav className="nav-menu">
           <ul>
@@ -112,6 +116,11 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 ${styleVariables.padding3};
+
+  .logo-container a,
+  .logo-container a:hover {
+    text-decoration: none;
+  }
 
   .logo {
     font-size: 20px;

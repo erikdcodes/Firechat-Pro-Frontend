@@ -22,7 +22,7 @@ const ActionItem = (props) => {
           <div className="name">{name ? name : formatPhoneNumber(phone)}</div>
           <div className="date">Due: {nextAction.dueDate}</div>
         </div>
-        <div className="message">{nextAction.task?.substring(0, 50)}</div>
+        <div className="message">{nextAction.task.substring(0, 50)}</div>
       </div>
     </Wrapper>
   );
