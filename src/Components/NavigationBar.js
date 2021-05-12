@@ -2,16 +2,19 @@ import styled from "styled-components";
 import { styleVariables } from "../GlobalStyles/StyleVariables.js";
 import { NavLink } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { loggedInState, selectedContactState } from "../Store/UIState";
+import { loggedInUserState, selectedContactState } from "../Store/UIState";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const NavigationBar = () => {
-  const loggedIn = useRecoilValue(loggedInState);
+  const { loginWithRedirect, logout } = useAuth0();
+
+  const loggedInUser = useRecoilValue(loggedInUserState);
   const setSelectedContactState = useSetRecoilState(selectedContactState);
   const resetSelectedContact = () => {
     setSelectedContactState(null);
   };
 
-  if (!loggedIn)
+  if (!loggedInUser)
     return (
       <Wrapper>
         <div className="logo-container">
@@ -35,7 +38,7 @@ const NavigationBar = () => {
               <NavLink
                 to="/login"
                 activeClassName="selected"
-                onClick={resetSelectedContact}
+                onClick={() => loginWithRedirect()}
                 exact
               >
                 Login
@@ -85,11 +88,11 @@ const NavigationBar = () => {
             </li>
             <li className="nav-item">
               <NavLink
-                to="/faq"
+                to="/logout"
                 activeClassName="selected"
-                onClick={resetSelectedContact}
+                onClick={() => logout({ returnTo: window.location.origin })}
               >
-                FAQ
+                Log Out
               </NavLink>
             </li>
           </ul>

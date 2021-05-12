@@ -7,5 +7,10 @@ export const selectedContactState = atom({
 
 export const loggedInState = atom({
   key: "loggedInState",
-  default: true,
+  default: false,
+});
+
+export const loggedInUserState = atom({
+  key: "loggedInUserState",
+  default: null,
 });
