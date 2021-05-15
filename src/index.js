@@ -8,8 +8,8 @@ import { GlobalStyles } from "./GlobalStyles/GlobalStyles";
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
-      <App />
       <GlobalStyles />
+      <App />
     </RecoilRoot>
   </React.StrictMode>,
   document.getElementById("root")

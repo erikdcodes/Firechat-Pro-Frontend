@@ -2,7 +2,7 @@ import { atom } from "recoil";
 
 export const selectedContactState = atom({
   key: "selectedContactState",
-  default: null,
+  default: null, //object
 });
 
 export const loggedInState = atom({
@@ -10,7 +10,7 @@ export const loggedInState = atom({
   default: true,
 });
 
-export const loggedInUserState = atom({
-  key: "loggedInUserState",
-  default: null,
+export const userDataState = atom({
+  key: "userDataState",
+  default: null, //object
 });

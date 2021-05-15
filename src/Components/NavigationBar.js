@@ -2,16 +2,16 @@ import styled from "styled-components";
 import { styleVariables } from "../GlobalStyles/StyleVariables.js";
 import { NavLink } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { loggedInUserState, selectedContactState } from "../Store/UIState";
+import { loggedInState, selectedContactState } from "../Store/UIState";
 
 const NavigationBar = () => {
-  const loggedInUser = useRecoilValue(loggedInUserState);
+  const loggedIn = useRecoilValue(loggedInState);
   const setSelectedContactState = useSetRecoilState(selectedContactState);
   const resetSelectedContact = () => {
     setSelectedContactState(null);
   };
 
-  if (!loggedInUser)
+  if (!loggedIn)
     return (
       <Wrapper>
         <div className="logo-container">

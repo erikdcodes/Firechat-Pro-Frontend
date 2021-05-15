@@ -2,12 +2,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AppLayout from "./Layouts/AppLayout";
 import Inbox from "./Pages/Inbox";
 import Actions from "./Pages/Actions";
-import { useSetRecoilState } from "recoil";
-import { loggedInUserState } from "./Store/UIState";
 
 function App() {
-  const setIsLoggedIn = useSetRecoilState(loggedInUserState);
-
   return (
     <Router>
       <Switch>
