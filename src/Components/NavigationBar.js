@@ -3,11 +3,8 @@ import { styleVariables } from "../GlobalStyles/StyleVariables.js";
 import { NavLink } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { loggedInUserState, selectedContactState } from "../Store/UIState";
-import { useAuth0 } from "@auth0/auth0-react";
 
 const NavigationBar = () => {
-  const { loginWithRedirect, logout } = useAuth0();
-
   const loggedInUser = useRecoilValue(loggedInUserState);
   const setSelectedContactState = useSetRecoilState(selectedContactState);
   const resetSelectedContact = () => {
@@ -35,12 +32,7 @@ const NavigationBar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink
-                to="/login"
-                activeClassName="selected"
-                onClick={() => loginWithRedirect()}
-                exact
-              >
+              <NavLink to="/login" activeClassName="selected" exact>
                 Login
               </NavLink>
             </li>
@@ -87,11 +79,7 @@ const NavigationBar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink
-                to="/logout"
-                activeClassName="selected"
-                onClick={() => logout({ returnTo: window.location.origin })}
-              >
+              <NavLink to="/logout" activeClassName="selected">
                 Log Out
               </NavLink>
             </li>

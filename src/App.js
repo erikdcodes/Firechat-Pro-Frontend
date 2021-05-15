@@ -1,21 +1,12 @@
-import { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AppLayout from "./Layouts/AppLayout";
 import Inbox from "./Pages/Inbox";
 import Actions from "./Pages/Actions";
-import { useAuth0 } from "@auth0/auth0-react";
 import { useSetRecoilState } from "recoil";
 import { loggedInUserState } from "./Store/UIState";
 
 function App() {
-  const { user, isAuthenticated } = useAuth0();
   const setIsLoggedIn = useSetRecoilState(loggedInUserState);
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      setIsLoggedIn(user);
-    }
-  }, [user]);
 
   return (
     <Router>
