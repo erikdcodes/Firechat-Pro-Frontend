@@ -3,7 +3,6 @@ import { styleVariables } from "../GlobalStyles/StyleVariables.js";
 import { NavLink } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { loggedInState, selectedContactState } from "../Store/UIState";
-import { fbAuth } from "../Firebase/Firebase";
 
 const NavigationBar = () => {
   const loggedIn = useRecoilValue(loggedInState);
@@ -13,7 +12,8 @@ const NavigationBar = () => {
   };
 
   const handleSignout = async () => {
-    await fbAuth.signOut();
+    // await fbAuth.signOut();
+    console.log("sign out function");
   };
 
   if (!loggedIn)
