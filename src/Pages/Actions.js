@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import AppLayout from "../Layouts/AppLayout";
 import { styleVariables } from "../GlobalStyles/StyleVariables.js";
-import SearchContacts from "../Components/SearchContacts";
 import ContactDetailsPanel from "../Components/ContactDetailsPanel/ContactDetailsPanel";
 import MessagesPanel from "../Components/MessagesPanel/MessagesPanel";
 import ActionsList from "../Components/ActionsListPanel/ActionsList";
