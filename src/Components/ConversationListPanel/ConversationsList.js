@@ -2,10 +2,19 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import ConversationItem from "../ConversationListPanel/ConversationItem";
-import data from "../../FakeData/FakeContacts.js";
+import { getContactsByUser } from "../../Data/Axios.js";
+// import data from "../../FakeData/FakeContacts";
 
 const ConversationsList = () => {
   const [activeLink, setActiveLink] = useState("ACTIVE");
+  const [data, setData] = useState([]);
+  const getData = async () => {
+    const newdata = await getContactsByUser("1234");
+    setData(newdata);
+  };
+  useEffect(() => {
+    getData();
+  }, [setData]);
 
   return (
     <Wrapper>
@@ -25,7 +34,7 @@ const ConversationsList = () => {
       </div>
       <div className="list-wrapper">
         {data.map((item, i) => (
-          <ConversationItem contact={item} key={i + item.id} />
+          <ConversationItem contact={item} key={i + item._id} />
         ))}
         <div className="add-contact-button-container">
           <button>Add Contact</button>

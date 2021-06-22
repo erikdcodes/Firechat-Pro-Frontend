@@ -1,29 +1,42 @@
 import styled from "styled-components";
+import dayjs from "dayjs";
+
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import { useRecoilState } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
 import { formatPhoneNumber } from "react-phone-number-input/input";
 
-const ConversationItem = (props) => {
-  const { id, name, phone, messages } = props.contact;
-  const lastMessage = messages[messages.length - 1];
+const messageDateConverter = (lastMessageDate) => {
+  const now = dayjs();
+  const lastMessageObj = dayjs(lastMessageDate);
+  const difference = now.diff(lastMessageObj, "hour");
 
-  const [selectedContact, setSelectedContact] = useRecoilState(
-    selectedContactState
-  );
+  if (difference < 12) return dayjs(lastMessageObj).format("h:mm A");
+  return dayjs(lastMessageObj).format("MM/DD/YYYY");
+};
+
+const ConversationItem = (props) => {
+  const { _id, firstName, contactPhone, messages } = props.contact;
+  const lastMessage = messages[messages.length - 1];
+  const lastMessageDate = messageDateConverter(lastMessage.updatedAt);
+
+  const [selectedContact, setSelectedContact] =
+    useRecoilState(selectedContactState);
 
   return (
     <Wrapper onClick={() => setSelectedContact(props.contact)}>
       <div
         className={
-          selectedContact?.id === id ? "selected container" : "container"
+          selectedContact?._id === _id ? "selected container" : "container"
         }
       >
         <div className="conversation-header">
-          <div className="name">{name ? name : formatPhoneNumber(phone)}</div>
-          <div className="date">{lastMessage?.date}</div>
+          <div className="name">
+            {firstName ? firstName : formatPhoneNumber(contactPhone)}
+          </div>
+          <div className="date">{lastMessageDate}</div>
         </div>
-        <div className="message">{lastMessage?.message.substring(0, 50)}</div>
+        <div className="message">{lastMessage?.text?.substring(0, 50)}</div>
       </div>
     </Wrapper>
   );
