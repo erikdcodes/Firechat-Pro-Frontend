@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import dayjs from "dayjs";
+import ReactTooltip from "react-tooltip";
 
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import { useRecoilState } from "recoil";
@@ -19,6 +20,9 @@ const ConversationItem = (props) => {
   const { _id, firstName, contactPhone, messages } = props.contact;
   const lastMessage = messages[messages.length - 1];
   const lastMessageDate = messageDateConverter(lastMessage.updatedAt);
+  const lastMessageDateTooltip = dayjs(lastMessage.updatedAt).format(
+    "MM/DD/YYYY h:mm A"
+  );
 
   const [selectedContact, setSelectedContact] =
     useRecoilState(selectedContactState);
@@ -34,7 +38,10 @@ const ConversationItem = (props) => {
           <div className="name">
             {firstName ? firstName : formatPhoneNumber(contactPhone)}
           </div>
-          <div className="date">{lastMessageDate}</div>
+          <div className="date" data-tip={lastMessageDateTooltip}>
+            {lastMessageDate}
+          </div>
+          <ReactTooltip delayShow={300} effect="solid" />
         </div>
         <div className="message">{lastMessage?.text?.substring(0, 50)}</div>
       </div>

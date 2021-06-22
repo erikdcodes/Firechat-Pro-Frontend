@@ -1,16 +1,21 @@
 import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
+import dayjs from "dayjs";
 
 const Message = (props) => {
-  const { message, date, direction } = props.message;
+  const { text, updatedAt, direction } = props.message;
+
+  const messageDate = dayjs(updatedAt).format("MM/DD/YYYY h:mm A");
 
   return (
     <Wrapper>
-      <div className={direction === "sent" ? "bubble sent" : "bubble received"}>
-        {message}
+      <div
+        className={direction === "fromUser" ? "bubble sent" : "bubble received"}
+      >
+        {text}
       </div>
-      <div className={direction === "sent" ? "date sent" : "date received"}>
-        {date}
+      <div className={direction === "fromUser" ? "date sent" : "date received"}>
+        {messageDate}
       </div>
     </Wrapper>
   );
