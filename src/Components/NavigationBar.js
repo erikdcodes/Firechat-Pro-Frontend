@@ -12,7 +12,6 @@ const NavigationBar = () => {
   };
 
   const handleSignout = async () => {
-    // await fbAuth.signOut();
     console.log("sign out function");
   };
 
