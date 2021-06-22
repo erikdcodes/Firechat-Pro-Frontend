@@ -27,6 +27,9 @@ const ConversationsList = () => {
         {data.map((item, i) => (
           <ConversationItem contact={item} key={i + item.id} />
         ))}
+        <div className="add-contact-button-container">
+          <button>Add Contact</button>
+        </div>
       </div>
     </Wrapper>
   );
@@ -48,8 +51,20 @@ const Wrapper = styled.div`
 
   .list-wrapper {
     height: 100%;
-    padding-bottom: 120px;
+    padding-bottom: 200px;
     overflow-y: scroll;
+  }
+
+  .add-contact-button-container {
+    position: fixed;
+    bottom: 20px;
+    left: 75px;
+
+    button {
+      padding: 15px 20px;
+      color: ${styleVariables.bgColor1};
+      background-color: ${styleVariables.accentColorGreen};
+    }
   }
 `;
 

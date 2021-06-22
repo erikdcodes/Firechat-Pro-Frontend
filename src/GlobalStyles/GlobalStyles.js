@@ -110,6 +110,8 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
+
+
 // custom scroll/track bar
 /* width */
 ::-webkit-scrollbar {

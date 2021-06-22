@@ -1,9 +1,33 @@
+import { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AppLayout from "./Layouts/AppLayout";
 import Inbox from "./Pages/Inbox";
 import Actions from "./Pages/Actions";
+import Login from "./Pages/Login";
+import { fbAuth } from "./Firebase/Firebase";
 
-function App() {
+const authListener = () => {
+  fbAuth.onAuthStateChanged((user) => {
+    if (user) {
+      console.log(
+        "logged in",
+        user.email,
+        "USER ID:",
+        user.uid,
+        "user object:",
+        user
+      );
+    } else {
+      console.log("not logged in");
+    }
+  });
+};
+
+const App = () => {
+  useEffect(() => {
+    authListener();
+  }, []);
+
   return (
     <Router>
       <Switch>
@@ -13,9 +37,7 @@ function App() {
           </AppLayout>
         </Route>
         <Route path="/login" exact>
-          <AppLayout>
-            <h1>Login</h1>
-          </AppLayout>
+          <Login />
         </Route>
         <Route path="/inbox" exact>
           <Inbox />
@@ -31,6 +53,6 @@ function App() {
       </Switch>
     </Router>
   );
-}
+};
 
 export default App;
