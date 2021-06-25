@@ -3,7 +3,7 @@ import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import dayjs from "dayjs";
 
 const Message = (props) => {
-  const { text, updatedAt, direction } = props.message;
+  const { text, updatedAt, direction, status } = props.message;
 
   const messageDate = dayjs(updatedAt).format("MM/DD/YYYY h:mm A");
 
@@ -15,7 +15,9 @@ const Message = (props) => {
         {text}
       </div>
       <div className={direction === "fromUser" ? "date sent" : "date received"}>
-        {messageDate}
+        {direction === "fromUser" && status === "failed"
+          ? "failed to send"
+          : messageDate}
       </div>
     </Wrapper>
   );
