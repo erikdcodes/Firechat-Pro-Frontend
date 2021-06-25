@@ -45,3 +45,16 @@ export const sendMessage = async (
     console.log(error);
   }
 };
+
+export const markAsRead = async (contactID) => {
+  try {
+    await axios.patch(`${URL}/api/contacts/edit`, {
+      contactID: contactID,
+      updatedContactObj: {
+        hasUnreadMessage: "false",
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
