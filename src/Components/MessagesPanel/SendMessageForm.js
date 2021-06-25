@@ -33,7 +33,7 @@ const SendMessageForm = () => {
           type="text"
           className="send-message-input"
         ></textarea>
-        <input type="submit" />
+        <input className="send-message-submit" type="submit" />
       </form>
     </Wrapper>
   );
@@ -48,12 +48,22 @@ const Wrapper = styled.div`
   .send-message-input {
     padding: 10px;
     width: 100%;
+    flex-basis: 90%;
+    flex-shrink: 1;
     height: 75px;
     resize: none;
     outline: none;
     border-color: ${darken(0.1, styleVariables.bgColor1)};
     border-radius: 3px;
     color: ${styleVariables.primaryTextColor};
+  }
+
+  .send-message-submit {
+    margin-left: 5px;
+    padding: 10px;
+    height: 75px;
+    flex-basis: 10%;
+    border-radius: 5px;
   }
 `;
 

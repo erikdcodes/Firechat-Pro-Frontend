@@ -6,6 +6,7 @@ import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import { useRecoilState } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
 import { formatPhoneNumber } from "react-phone-number-input/input";
+import { markAsRead } from "../../Data/Axios";
 
 const messageDateConverter = (lastMessageDate) => {
   const now = dayjs();
@@ -16,6 +17,7 @@ const messageDateConverter = (lastMessageDate) => {
   return dayjs(lastMessageObj).format("MM/DD/YYYY");
 };
 
+// component
 const ConversationItem = (props) => {
   const { _id, name, contactPhone, messages, hasUnreadMessage } = props.contact;
   const lastMessage = messages[messages.length - 1];
@@ -27,8 +29,13 @@ const ConversationItem = (props) => {
   const [selectedContact, setSelectedContact] =
     useRecoilState(selectedContactState);
 
+  const handleClick = async () => {
+    setSelectedContact(props.contact);
+    if (hasUnreadMessage) return markAsRead(_id);
+  };
+
   return (
-    <Wrapper onClick={() => setSelectedContact(props.contact)}>
+    <Wrapper onClick={handleClick}>
       <div
         className={
           selectedContact?._id === _id ? "selected container" : "container"
