@@ -7,14 +7,25 @@ import { getActiveContactsByUser } from "../../Data/Axios.js";
 const ConversationsList = () => {
   const [activeLink, setActiveLink] = useState("ACTIVE");
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
       const newdata = await getActiveContactsByUser("1234");
       setData(newdata);
+      setIsLoading(false);
     };
     getData();
   }, [setData]);
+
+  if (isLoading)
+    return (
+      <Wrapper>
+        <div className="loading">
+          <p>Retrieving contacts...</p>
+        </div>
+      </Wrapper>
+    );
 
   return (
     <Wrapper>
@@ -62,6 +73,10 @@ const Wrapper = styled.div`
     height: 100%;
     padding-bottom: 200px;
     overflow-y: scroll;
+  }
+
+  .loading {
+    padding: 20px;
   }
 
   .add-contact-button-container {
