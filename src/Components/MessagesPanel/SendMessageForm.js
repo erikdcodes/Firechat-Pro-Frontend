@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { selectedContactState, userDataState } from "../../Store/UIState";
@@ -10,10 +10,6 @@ const SendMessageForm = () => {
   const inputEl = useRef(null);
   const selectedContact = useRecoilValue(selectedContactState);
   const user = useRecoilValue(userDataState);
-
-  useEffect(() => {
-    inputEl.current.value = "";
-  }, [selectedContact]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
