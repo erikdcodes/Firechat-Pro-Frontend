@@ -17,7 +17,7 @@ const messageDateConverter = (lastMessageDate) => {
 };
 
 const ConversationItem = (props) => {
-  const { _id, firstName, contactPhone, messages } = props.contact;
+  const { _id, name, contactPhone, messages, hasUnreadMessage } = props.contact;
   const lastMessage = messages[messages.length - 1];
   const lastMessageDate = messageDateConverter(lastMessage.updatedAt);
   const lastMessageDateTooltip = dayjs(lastMessage.updatedAt).format(
@@ -36,14 +36,16 @@ const ConversationItem = (props) => {
       >
         <div className="conversation-header">
           <div className="name">
-            {firstName ? firstName : formatPhoneNumber(contactPhone)}
+            {name ? name : formatPhoneNumber(contactPhone)}
           </div>
           <div className="date" data-tip={lastMessageDateTooltip}>
             {lastMessageDate}
           </div>
           <ReactTooltip delayShow={300} effect="solid" />
         </div>
-        <div className="message">{lastMessage?.text?.substring(0, 50)}</div>
+        <div className={hasUnreadMessage ? "unread message" : "message"}>
+          {lastMessage?.text?.substring(0, 50)}
+        </div>
       </div>
     </Wrapper>
   );
@@ -67,6 +69,10 @@ const Wrapper = styled.div`
     color: ${styleVariables.secondaryTextColor};
     font-size: ${styleVariables.smallestTextSize};
     font-weight: 400;
+  }
+
+  .unread {
+    font-weight: 600;
   }
 
   .message {

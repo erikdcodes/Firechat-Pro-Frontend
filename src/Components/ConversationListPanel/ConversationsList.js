@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import ConversationItem from "../ConversationListPanel/ConversationItem";
-import { getContactsByUser } from "../../Data/Axios.js";
-// import data from "../../FakeData/FakeContacts";
+import { getActiveContactsByUser } from "../../Data/Axios.js";
 
 const ConversationsList = () => {
   const [activeLink, setActiveLink] = useState("ACTIVE");
   const [data, setData] = useState([]);
-  const getData = async () => {
-    const newdata = await getContactsByUser("1234");
-    setData(newdata);
-  };
+
   useEffect(() => {
+    const getData = async () => {
+      const newdata = await getActiveContactsByUser("1234");
+      setData(newdata);
+    };
     getData();
   }, [setData]);
 
@@ -33,7 +33,7 @@ const ConversationsList = () => {
         </button>
       </div>
       <div className="list-wrapper">
-        {data.map((item, i) => (
+        {data?.map((item, i) => (
           <ConversationItem contact={item} key={i + item._id} />
         ))}
         <div className="add-contact-button-container">

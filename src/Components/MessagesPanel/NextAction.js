@@ -6,14 +6,15 @@ import { selectedContactState } from "../../Store/UIState";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { darken } from "polished";
+import dayjs from "dayjs";
 
 const NextAction = () => {
   const selectedContact = useRecoilValue(selectedContactState);
   const [isEditing, setIsEditing] = useState(false);
 
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(Date.now());
 
-  if (!selectedContact) return "";
+  if (!selectedContact) return null;
 
   if (isEditing) {
     return (
@@ -54,9 +55,14 @@ const NextAction = () => {
           <h4>Next Action</h4>
           <input type="checkbox" name="next-action-item" />
           <label style={{ marginLeft: "10px" }} htmlFor="next-action-item">
-            Next action item goes here
+            {selectedContact.nextAction.text}
           </label>
-          <p className="due-date">Due: {startDate.toLocaleString()}</p>
+          <p className="due-date">
+            Due:{" "}
+            {dayjs(selectedContact.nextAction.dueDate).format(
+              "MM-DD-YYYY h:mm A"
+            )}
+          </p>
         </div>
       </Wrapper>
     );

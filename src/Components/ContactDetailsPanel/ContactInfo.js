@@ -10,16 +10,17 @@ const ContactInfo = () => {
   const selectedContact = useRecoilValue(selectedContactState);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [phoneValue, setPhoneValue] = useState(selectedContact?.phone);
+  const [phoneValue, setPhoneValue] = useState(selectedContact?.contactPhone);
 
   // resets phone value when new contact selected & closes editing form
   useEffect(() => {
-    setPhoneValue(selectedContact?.phone);
+    setPhoneValue(selectedContact?.contactPhone);
     setIsEditing(false);
   }, [selectedContact]);
 
-  if (!selectedContact) return "";
-  else if (isEditing)
+  if (!selectedContact) return null;
+
+  if (isEditing)
     return (
       <Wrapper>
         <div className="header">
@@ -37,16 +38,6 @@ const ContactInfo = () => {
 
         <div className="contact-info">
           <div className="form-group">
-            <span className=" icon orange">E:</span>
-            <div className="input-wrapper">
-              <input
-                type="text"
-                placeholder="add email"
-                defaultValue={selectedContact.email}
-              />
-            </div>
-          </div>
-          <div className="form-group">
             <span className=" icon pink">P:</span>
             <div className="input-wrapper">
               <Input
@@ -57,6 +48,18 @@ const ContactInfo = () => {
               />
             </div>
           </div>
+
+          <div className="form-group">
+            <span className=" icon orange">E:</span>
+            <div className="input-wrapper">
+              <input
+                type="text"
+                placeholder="add email"
+                defaultValue={selectedContact.email}
+              />
+            </div>
+          </div>
+
           <div className="form-group">
             <span className=" icon green">A:</span>
             <div className="input-wrapper">
@@ -76,41 +79,41 @@ const ContactInfo = () => {
         </div>
       </Wrapper>
     );
-  else
-    return (
-      <Wrapper
-        data-tip="Double-click to edit"
-        onDoubleClick={() => setIsEditing(true)}
-      >
-        <ReactTooltip delayShow={500} effect="solid" />
-        <div className="header">
-          {selectedContact.name ? (
-            <div className="name"> {selectedContact.name} </div>
-          ) : (
-            <div className="name missing">Add name</div>
-          )}
 
-          {selectedContact.background ? (
-            selectedContact.background
-          ) : (
-            <div className="missing">Add background info</div>
-          )}
-        </div>
+  return (
+    <Wrapper
+      data-tip="Double-click to edit"
+      onDoubleClick={() => setIsEditing(true)}
+    >
+      <ReactTooltip delayShow={500} effect="solid" />
+      <div className="header">
+        {selectedContact.name ? (
+          <div className="name"> {selectedContact.name} </div>
+        ) : (
+          <div className="name missing">Add name</div>
+        )}
 
-        <div className="contact-info">
-          <p>
-            <span className=" icon orange">E:</span> {selectedContact?.email}
-          </p>
-          <p>
-            <span className=" icon pink">P: </span>
-            {formatPhoneNumber(selectedContact?.phone)}
-          </p>
-          <p>
-            <span className=" icon green">A:</span> {selectedContact?.address}
-          </p>
-        </div>
-      </Wrapper>
-    );
+        {selectedContact.background ? (
+          selectedContact.background
+        ) : (
+          <div className="missing">Add background info</div>
+        )}
+      </div>
+
+      <div className="contact-info">
+        <p>
+          <span className=" icon pink">P: </span>
+          {formatPhoneNumber(selectedContact?.contactPhone)}
+        </p>
+        <p>
+          <span className=" icon orange">E:</span> {selectedContact?.email}
+        </p>
+        <p>
+          <span className=" icon green">A:</span> {selectedContact?.address}
+        </p>
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
