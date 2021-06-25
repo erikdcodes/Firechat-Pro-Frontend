@@ -1,17 +1,34 @@
+import { useRef } from "react";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
-import { selectedContactState } from "../../Store/UIState";
+import { selectedContactState, userDataState } from "../../Store/UIState";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import { darken } from "polished";
+import { sendMessage } from "../../Data/Axios";
 
 const SendMessageForm = () => {
+  const inputEl = useRef(null);
   const selectedContact = useRecoilValue(selectedContactState);
+  const user = useRecoilValue(userDataState);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const message = inputEl.current.value;
+    console.log(message);
+  };
 
   if (!selectedContact) return "";
 
   return (
     <Wrapper>
-      <textarea type="text" className="send-message-input"></textarea>
+      <form onSubmit={(e) => handleSubmit(e)} action="">
+        <textarea
+          ref={inputEl}
+          type="text"
+          className="send-message-input"
+        ></textarea>
+        <input type="submit" />
+      </form>
     </Wrapper>
   );
 };

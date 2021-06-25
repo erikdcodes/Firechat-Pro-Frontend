@@ -26,3 +26,22 @@ export const getActiveContactsByUser = async (userAuth0ID) => {
     console.log(error);
   }
 };
+
+export const sendMessage = async (
+  userAuth0ID,
+  userTwilioPhone,
+  contactPhone,
+  text
+) => {
+  try {
+    const data = await axios.post(`${URL}/api/sms/send`, {
+      userAuth0ID,
+      userTwilioPhone,
+      contactPhone,
+      text,
+    });
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

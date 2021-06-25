@@ -30,7 +30,7 @@ const MessagesList = () => {
 
 const Wrapper = styled.div`
   width: 100%;
-  height: calc(100% - 195px);
+  height: calc(100% - 200px);
   overflow-y: scroll;
   padding-top: 10px;
 `;
