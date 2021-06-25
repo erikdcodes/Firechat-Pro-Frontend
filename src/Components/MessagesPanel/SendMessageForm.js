@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { selectedContactState, userDataState } from "../../Store/UIState";
@@ -7,20 +7,31 @@ import { darken } from "polished";
 import { sendMessage } from "../../Data/Axios";
 
 const SendMessageForm = () => {
-  const inputEl = useRef(null);
+  const [messageValue, setMessageValue] = useState("");
   const selectedContact = useRecoilValue(selectedContactState);
   const user = useRecoilValue(userDataState);
+
+  useEffect(() => {
+    setMessageValue("");
+  }, [selectedContact]);
+
+  const handleChange = (e) => {
+    setMessageValue(e.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const { contactPhone } = selectedContact;
     const { userAuth0ID, userTwilioPhone } = user;
-    const text = inputEl.current.value;
+    const text = messageValue;
+
     if (!text) return;
+
     // send message via api
     sendMessage(userAuth0ID, userTwilioPhone, contactPhone, text);
+
     // clear input
-    inputEl.current.value = "";
+    setMessageValue("");
   };
 
   if (!selectedContact) return "";
@@ -29,7 +40,8 @@ const SendMessageForm = () => {
     <Wrapper>
       <form className="form" onSubmit={(e) => handleSubmit(e)} action="">
         <textarea
-          ref={inputEl}
+          onChange={(e) => handleChange(e)}
+          value={messageValue}
           type="text"
           className="send-message-input"
         ></textarea>
