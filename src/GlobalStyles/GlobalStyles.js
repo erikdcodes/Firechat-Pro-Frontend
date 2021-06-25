@@ -46,6 +46,12 @@ export const GlobalStyles = createGlobalStyle`
 
   }
 
+  input[type='submit']:hover {
+    color: #fff;
+    background-color: ${styleVariables.accentColorBlue};
+    cursor: pointer;
+  } 
+
   ::placeholder {
       font-size: ${styleVariables.smallerTextSize};
       font-style: italic;

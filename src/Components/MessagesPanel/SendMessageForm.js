@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { selectedContactState, userDataState } from "../../Store/UIState";
@@ -11,17 +11,27 @@ const SendMessageForm = () => {
   const selectedContact = useRecoilValue(selectedContactState);
   const user = useRecoilValue(userDataState);
 
+  useEffect(() => {
+    inputEl.current.value = "";
+  }, [selectedContact]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const message = inputEl.current.value;
-    console.log(message);
+    const { contactPhone } = selectedContact;
+    const { userAuth0ID, userTwilioPhone } = user;
+    const text = inputEl.current.value;
+    if (!text) return;
+    // send message via api
+    sendMessage(userAuth0ID, userTwilioPhone, contactPhone, text);
+    // clear input
+    inputEl.current.value = "";
   };
 
   if (!selectedContact) return "";
 
   return (
     <Wrapper>
-      <form onSubmit={(e) => handleSubmit(e)} action="">
+      <form className="form" onSubmit={(e) => handleSubmit(e)} action="">
         <textarea
           ref={inputEl}
           type="text"
@@ -36,7 +46,9 @@ const SendMessageForm = () => {
 const Wrapper = styled.div`
   height: 200px;
   width: 100%;
-
+  .form {
+    display: flex;
+  }
   .send-message-input {
     padding: 10px;
     width: 100%;
