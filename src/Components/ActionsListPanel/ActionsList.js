@@ -1,15 +1,22 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
-import data from "../../FakeData/FakeContacts.js";
+// import data from "../../FakeData/FakeContacts.js";
 import ActionItem from "../ActionsListPanel/ActionItem";
 
-const getContactsWithActions = (data) => {
-  const newData = data.filter((item) => item.nextAction);
-  return newData;
-};
+// const getContactsWithActions = (data) => {
+//   const newData = data.filter((item) => item.nextAction);
+//   return newData;
+// };
 
 const ActionsList = () => {
-  const newData = getContactsWithActions(data);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const newData = getContactsWithActions(data);
+  //   };
+  //   getData();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <Wrapper>
@@ -17,9 +24,9 @@ const ActionsList = () => {
         <h4>Upcoming Actions</h4>
       </div>
       <div className="list-wrapper">
-        {newData.map((item, i) => (
+        {/* {newData.map((item, i) => (
           <ActionItem contact={item} key={i + item.id} />
-        ))}
+        ))} */}
       </div>
     </Wrapper>
   );

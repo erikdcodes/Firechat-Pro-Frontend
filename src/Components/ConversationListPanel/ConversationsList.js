@@ -3,26 +3,43 @@ import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import ConversationItem from "../ConversationListPanel/ConversationItem";
 import { getActiveContactsByUser } from "../../Data/Axios.js";
+import { useRecoilValue } from "recoil";
+import { userDataState } from "../../Store/UIState";
 
 const ConversationsList = () => {
   const [activeLink, setActiveLink] = useState("ACTIVE");
-  const [data, setData] = useState([]);
+  const [contacts, setContacts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { userAuth0ID } = useRecoilValue(userDataState);
 
   useEffect(() => {
     const getData = async () => {
-      const newdata = await getActiveContactsByUser("1234");
-      setData(newdata);
+      const newdata = await getActiveContactsByUser(userAuth0ID);
+      setContacts(newdata);
       setIsLoading(false);
     };
     getData();
-  }, [setData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (isLoading)
     return (
       <Wrapper>
         <div className="loading">
           <p>Retrieving contacts...</p>
+        </div>
+      </Wrapper>
+    );
+
+  if (!contacts || contacts?.length === 0)
+    return (
+      <Wrapper>
+        <div className="loading">
+          <p>add a contact</p>
+
+          <div className="add-contact-button-container">
+            <button>Add Contact</button>
+          </div>
         </div>
       </Wrapper>
     );
@@ -44,7 +61,7 @@ const ConversationsList = () => {
         </button>
       </div>
       <div className="list-wrapper">
-        {data?.map((item, i) => (
+        {contacts?.map((item, i) => (
           <ConversationItem contact={item} key={i + item._id} />
         ))}
         <div className="add-contact-button-container">
@@ -55,6 +72,7 @@ const ConversationsList = () => {
   );
 };
 
+// styles
 const Wrapper = styled.div`
   height: 100%;
   .header {

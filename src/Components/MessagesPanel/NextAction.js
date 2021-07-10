@@ -1,18 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { darken } from "polished";
 import dayjs from "dayjs";
+import { addNextAction, completeNextAction } from "../../Data/Axios";
 
 const NextAction = () => {
-  const selectedContact = useRecoilValue(selectedContactState);
+  const [selectedContact, setSelectedContact] =
+    useRecoilState(selectedContactState);
   const [isEditing, setIsEditing] = useState(false);
-
+  const [actionText, setActionText] = useState("");
   const [startDate, setStartDate] = useState(Date.now());
+
+  useEffect(() => {
+    handleFinishEditing();
+  }, [selectedContact]);
+
+  const handleFinishEditing = () => {
+    setIsEditing(false);
+    setActionText("");
+  };
+
+  const handleSaveAction = async () => {
+    const { _id } = selectedContact;
+    const updatedContact = await addNextAction(_id, startDate, actionText);
+    console.log(updatedContact);
+    setSelectedContact(updatedContact);
+    handleFinishEditing();
+  };
+
+  const handleCheckbox = async () => {
+    const { _id } = selectedContact;
+
+    const updatedContact = await completeNextAction(_id);
+    setSelectedContact(updatedContact);
+    handleFinishEditing();
+  };
 
   if (!selectedContact) return null;
 
@@ -22,15 +49,12 @@ const NextAction = () => {
         <div className="next-action">
           <h4>Next Action</h4>
           <input
+            value={actionText}
+            onChange={(e) => setActionText(e.target.value)}
             type="text"
             name="next-action-item"
             placeholder="add next action"
           />
-          {/* <input
-            type="text"
-            name="next-action-due-date"
-            placeholder="add due date"
-          /> */}
           <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
@@ -39,10 +63,12 @@ const NextAction = () => {
           />
         </div>
         <div className="button-container">
-          <button onClick={() => setIsEditing(false)} className="link">
+          <button onClick={handleFinishEditing} className="link">
             cancel
           </button>
-          <button className="green">save</button>
+          <button onClick={handleSaveAction} className="green">
+            save
+          </button>
         </div>
       </Wrapper>
     );
@@ -53,7 +79,12 @@ const NextAction = () => {
       <Wrapper>
         <div className="next-action">
           <h4>Next Action</h4>
-          <input type="checkbox" name="next-action-item" />
+          <input
+            onClick={handleCheckbox}
+            defaultChecked={false}
+            type="checkbox"
+            name="next-action-item"
+          />
           <label style={{ marginLeft: "10px" }} htmlFor="next-action-item">
             {selectedContact.nextAction.text}
           </label>
