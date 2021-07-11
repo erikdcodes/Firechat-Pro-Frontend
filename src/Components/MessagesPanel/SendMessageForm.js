@@ -57,7 +57,7 @@ const SendMessageForm = () => {
           className="send-message-input"
         ></textarea>
         <button className={isSending ? "test" : "blue test"}>
-          {isSending ? "..." : "Send"}
+          {isSending ? "Sending.." : "Send"}
         </button>
       </form>
     </Wrapper>

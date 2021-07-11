@@ -13,15 +13,30 @@ const noteDate = (date) => {
 
 const Notes = () => {
   const selectedContact = useRecoilValue(selectedContactState);
-  console.log("notes selected contact", selectedContact);
+
+  const reverseSortedNotes = [...selectedContact?.notes].reverse();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submiting note");
+  };
 
   return (
     <Wrapper>
       <div className="notes">
         <h4>Notes</h4>
-        <input type="text" placeholder="add a note" />
-        <div className="notes-wrapper hide-scrollbar">
-          {selectedContact?.notes?.map((note, i) => (
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <input type="text" placeholder="add a note" />
+          <input type="submit" style={{ display: "none" }} />
+        </form>
+        <div
+          className={
+            reverseSortedNotes.length > 3
+              ? "notes-wrapper"
+              : "notes-wrapper hide-scrollbar"
+          }
+        >
+          {reverseSortedNotes?.map((note, i) => (
             <div key={i} className="note">
               <p>
                 <span className="note-date">{noteDate(note.createdAt)}</span>{" "}
@@ -60,7 +75,7 @@ const Wrapper = styled.div`
   .notes-wrapper {
     margin-top: 5px;
     height: 400px;
-    padding-bottom: 100px; /* Scroll past last item*/
+    padding-bottom: 50px; /* Scroll past last item*/
     overflow-y: scroll;
 
     `;
