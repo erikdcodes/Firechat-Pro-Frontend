@@ -32,6 +32,7 @@ const ConversationItem = (props) => {
     useRecoilState(selectedContactState);
 
   const handleClick = async () => {
+    if (props.contact?._id === selectedContact?._id) return;
     setSelectedContact(props.contact);
     if (hasUnreadMessage) {
       await markAsRead(_id);

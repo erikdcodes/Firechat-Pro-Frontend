@@ -4,13 +4,14 @@ import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import ConversationItem from "../ConversationListPanel/ConversationItem";
 import { getActiveContactsByUser } from "../../Data/Axios.js";
 import { useRecoilValue } from "recoil";
-import { userDataState } from "../../Store/UIState";
+import { userDataState, selectedContactState } from "../../Store/UIState";
 
 const ConversationsList = () => {
   const [activeLink, setActiveLink] = useState("ACTIVE");
   const [contacts, setContacts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { userAuth0ID } = useRecoilValue(userDataState);
+  const selectedContact = useRecoilValue(selectedContactState);
 
   useEffect(() => {
     const getData = async () => {
@@ -20,7 +21,7 @@ const ConversationsList = () => {
     };
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [selectedContact]);
 
   if (isLoading)
     return (
