@@ -3,9 +3,17 @@ import { useRecoilValue } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import { darken } from "polished";
+import dayjs from "dayjs";
+
+const noteDate = (date) => {
+  return dayjs(date).format("MM/DD/YYYY h:mm A");
+};
+
+//component
 
 const Notes = () => {
   const selectedContact = useRecoilValue(selectedContactState);
+  console.log("notes selected contact", selectedContact);
 
   return (
     <Wrapper>
@@ -16,8 +24,9 @@ const Notes = () => {
           {selectedContact?.notes?.map((note, i) => (
             <div key={i} className="note">
               <p>
-                <span className="note-date">{note.date}</span> <br />
-                {note.title}
+                <span className="note-date">{noteDate(note.createdAt)}</span>{" "}
+                <br />
+                {note.text}
               </p>
             </div>
           ))}
@@ -26,6 +35,8 @@ const Notes = () => {
     </Wrapper>
   );
 };
+
+//styling
 
 const Wrapper = styled.div`
 
