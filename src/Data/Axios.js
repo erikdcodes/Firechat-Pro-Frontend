@@ -33,7 +33,7 @@ export const getAContact = async (contactID) => {
     });
 
     const contact = await res.data;
-    return contact;
+    return contact.contact;
   } catch (error) {
     console.log(error);
     return error;

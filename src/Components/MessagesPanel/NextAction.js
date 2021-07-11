@@ -28,7 +28,6 @@ const NextAction = () => {
   const handleSaveAction = async () => {
     const { _id } = selectedContact;
     const updatedContact = await addNextAction(_id, startDate, actionText);
-    console.log(updatedContact);
     setSelectedContact(updatedContact);
     handleFinishEditing();
   };

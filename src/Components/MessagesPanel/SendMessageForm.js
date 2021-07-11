@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { selectedContactState, userDataState } from "../../Store/UIState";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import { darken } from "polished";
-import { sendMessage } from "../../Data/Axios";
+import { getAContact, sendMessage } from "../../Data/Axios";
 
 const SendMessageForm = () => {
   const [messageValue, setMessageValue] = useState("");
-  const selectedContact = useRecoilValue(selectedContactState);
+  const [selectedContact, setSelectedContact] =
+    useRecoilState(selectedContactState);
   const user = useRecoilValue(userDataState);
 
   useEffect(() => {
@@ -19,16 +20,19 @@ const SendMessageForm = () => {
     setMessageValue(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { contactPhone } = selectedContact;
+    const { contactPhone, _id } = selectedContact;
     const { userAuth0ID, userTwilioPhone } = user;
     const text = messageValue;
-
     if (!text) return;
 
     // send message via api
-    sendMessage(userAuth0ID, userTwilioPhone, contactPhone, text);
+    await sendMessage(userAuth0ID, userTwilioPhone, contactPhone, text);
+
+    // get contact data and set as selected contact to refresh data
+    const updatedContact = await getAContact(_id);
+    setSelectedContact(updatedContact);
 
     // clear input
     setMessageValue("");
@@ -51,6 +55,7 @@ const SendMessageForm = () => {
   );
 };
 
+// styles
 const Wrapper = styled.div`
   height: 200px;
   width: 100%;

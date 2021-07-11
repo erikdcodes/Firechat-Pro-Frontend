@@ -4,7 +4,7 @@ import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import ConversationItem from "../ConversationListPanel/ConversationItem";
 import { getActiveContactsByUser } from "../../Data/Axios.js";
 import { useRecoilValue } from "recoil";
-import { userDataState, selectedContactState } from "../../Store/UIState";
+import { userDataState } from "../../Store/UIState";
 
 const ConversationsList = () => {
   const [activeLink, setActiveLink] = useState("ACTIVE");
