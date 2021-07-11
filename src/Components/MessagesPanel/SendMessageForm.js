@@ -4,10 +4,11 @@ import { useRecoilValue, useRecoilState } from "recoil";
 import { selectedContactState, userDataState } from "../../Store/UIState";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import { darken } from "polished";
-import { getAContact, sendMessage } from "../../Data/Axios";
+import { sendMessage } from "../../Data/Axios";
 
 const SendMessageForm = () => {
   const [messageValue, setMessageValue] = useState("");
+  const [isSending, setIsSending] = useState(false);
   const [selectedContact, setSelectedContact] =
     useRecoilState(selectedContactState);
   const user = useRecoilValue(userDataState);
@@ -27,6 +28,9 @@ const SendMessageForm = () => {
     const text = messageValue;
     if (!text) return;
 
+    setIsSending(true);
+    // clear input
+    setMessageValue("");
     // send message via api
     const updatedContact = await sendMessage(
       userAuth0ID,
@@ -35,13 +39,10 @@ const SendMessageForm = () => {
       text
     );
 
-    console.log(updatedContact);
+    setIsSending(false);
 
     // get contact data and set as selected contact to refresh data
     setSelectedContact(updatedContact);
-
-    // clear input
-    setMessageValue("");
   };
 
   if (!selectedContact) return "";
@@ -55,7 +56,9 @@ const SendMessageForm = () => {
           type="text"
           className="send-message-input"
         ></textarea>
-        <input className="send-message-submit" type="submit" />
+        <button className={isSending ? "test" : "blue test"}>
+          {isSending ? "..." : "Send"}
+        </button>
       </form>
     </Wrapper>
   );
@@ -71,7 +74,7 @@ const Wrapper = styled.div`
   .send-message-input {
     padding: 10px;
     width: 100%;
-    flex-basis: 90%;
+    flex-basis: 100%;
     flex-shrink: 1;
     height: 75px;
     resize: none;
@@ -81,12 +84,8 @@ const Wrapper = styled.div`
     color: ${styleVariables.primaryTextColor};
   }
 
-  .send-message-submit {
-    margin-left: 5px;
-    padding: 10px;
-    height: 75px;
-    flex-basis: 10%;
-    border-radius: 5px;
+  .test {
+    min-width: 75px;
   }
 `;
 
