@@ -35,6 +35,8 @@ const SendMessageForm = () => {
       text
     );
 
+    console.log(updatedContact);
+
     // get contact data and set as selected contact to refresh data
     setSelectedContact(updatedContact);
 
