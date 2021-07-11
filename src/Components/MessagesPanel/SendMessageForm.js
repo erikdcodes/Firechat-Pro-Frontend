@@ -22,16 +22,20 @@ const SendMessageForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { contactPhone, _id } = selectedContact;
+    const { contactPhone } = selectedContact;
     const { userAuth0ID, userTwilioPhone } = user;
     const text = messageValue;
     if (!text) return;
 
     // send message via api
-    await sendMessage(userAuth0ID, userTwilioPhone, contactPhone, text);
+    const updatedContact = await sendMessage(
+      userAuth0ID,
+      userTwilioPhone,
+      contactPhone,
+      text
+    );
 
     // get contact data and set as selected contact to refresh data
-    const updatedContact = await getAContact(_id);
     setSelectedContact(updatedContact);
 
     // clear input

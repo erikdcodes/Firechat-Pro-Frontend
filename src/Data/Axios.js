@@ -53,7 +53,8 @@ export const sendMessage = async (
       contactPhone,
       text,
     });
-    return res;
+    const contact = await res.data;
+    return contact.contact;
   } catch (error) {
     console.log(error);
     return error;
