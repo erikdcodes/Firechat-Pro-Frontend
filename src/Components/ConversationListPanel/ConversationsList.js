@@ -66,7 +66,7 @@ const ConversationsList = () => {
           <ConversationItem contact={item} key={i + item._id} />
         ))}
         <div className="add-contact-button-container">
-          <button>Add Contact</button>
+          <button className="green">Add Contact</button>
         </div>
       </div>
     </Wrapper>
@@ -105,8 +105,6 @@ const Wrapper = styled.div`
 
     button {
       padding: 15px 20px;
-      color: ${styleVariables.bgColor1};
-      background-color: ${styleVariables.accentColorGreen};
     }
   }
 `;

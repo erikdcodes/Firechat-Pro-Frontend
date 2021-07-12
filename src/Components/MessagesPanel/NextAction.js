@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { darken } from "polished";
 import dayjs from "dayjs";
-import { addNextAction, completeNextAction } from "../../Data/Axios";
+import { addNextAction, addNote, completeNextAction } from "../../Data/Axios";
 
 const NextAction = () => {
   const [selectedContact, setSelectedContact] =
@@ -15,6 +15,7 @@ const NextAction = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [actionText, setActionText] = useState("");
   const [startDate, setStartDate] = useState(Date.now());
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     handleFinishEditing();
@@ -34,8 +35,11 @@ const NextAction = () => {
 
   const handleCheckbox = async () => {
     const { _id } = selectedContact;
-
-    const updatedContact = await completeNextAction(_id);
+    await completeNextAction(_id);
+    const updatedContact = await addNote(
+      _id,
+      `completed: "${selectedContact.nextAction.text}"`
+    );
     setSelectedContact(updatedContact);
     handleFinishEditing();
   };
@@ -79,10 +83,11 @@ const NextAction = () => {
         <div className="next-action">
           <h4>Next Action</h4>
           <input
-            onClick={handleCheckbox}
-            defaultChecked={false}
+            // onClick={handleCheckbox}
+            onChange={handleCheckbox}
             type="checkbox"
             name="next-action-item"
+            checked={checked}
           />
           <label style={{ marginLeft: "10px" }} htmlFor="next-action-item">
             {selectedContact.nextAction.text}

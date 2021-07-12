@@ -85,7 +85,7 @@ const Wrapper = styled.div`
   }
 
   .test {
-    min-width: 75px;
+    min-width: 100px;
   }
 `;
 
