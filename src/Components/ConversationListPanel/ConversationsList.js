@@ -15,12 +15,14 @@ const ConversationsList = () => {
   const [selectedContact, setSelectedContact] =
     useRecoilState(selectedContactState);
 
+  const getData = async () => {
+    const newdata = await getActiveContactsByUser(userAuth0ID);
+    setContacts(newdata);
+    setIsLoading(false);
+  };
+
   useEffect(() => {
-    const getData = async () => {
-      const newdata = await getActiveContactsByUser(userAuth0ID);
-      setContacts(newdata);
-      setIsLoading(false);
-    };
+    if (selectedContact) console.log(selectedContact);
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedContact]);
@@ -30,18 +32,11 @@ const ConversationsList = () => {
       transports: ["websocket"],
     });
     socket.on("smsReceived", (contact) => {
-      console.log("smsReceived", contact);
       if (contact.userTwilioPhone === userTwilioPhone) {
-        const getData = async () => {
-          const newdata = await getActiveContactsByUser(userAuth0ID);
-          setContacts(newdata);
-          setIsLoading(false);
-        };
         getData();
       }
 
       if (selectedContact && contact._id === selectedContact._id) {
-        console.log("matched selectedContact");
         setSelectedContact(contact);
       }
     });
@@ -49,6 +44,7 @@ const ConversationsList = () => {
     return () => {
       socket.removeAllListeners();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedContact]);
 
   if (isLoading)

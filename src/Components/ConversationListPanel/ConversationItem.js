@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
 import ReactTooltip from "react-tooltip";
@@ -21,23 +20,22 @@ const messageDateConverter = (lastMessageDate) => {
 // component
 const ConversationItem = (props) => {
   const { _id, name, contactPhone, messages, hasUnreadMessage } = props.contact;
-  const [unreadState, setUnreadState] = useState(hasUnreadMessage);
   const lastMessage = messages[messages.length - 1];
   const lastMessageDate = messageDateConverter(lastMessage.updatedAt);
   const lastMessageDateTooltip = dayjs(lastMessage.updatedAt).format(
     "MM/DD/YYYY h:mm A"
   );
-
   const [selectedContact, setSelectedContact] =
     useRecoilState(selectedContactState);
 
   const handleClick = async () => {
-    if (props.contact?._id === selectedContact?._id) return;
-    setSelectedContact(props.contact);
     if (hasUnreadMessage) {
       await markAsRead(_id);
-      setUnreadState(false);
+      setSelectedContact(props.contact);
     }
+    if (props.contact?._id === selectedContact?._id) return;
+    setSelectedContact(props.contact);
+    return;
   };
 
   return (
@@ -56,7 +54,7 @@ const ConversationItem = (props) => {
           </div>
           <ReactTooltip delayShow={300} effect="solid" />
         </div>
-        <div className={unreadState ? "unread message" : "message"}>
+        <div className={hasUnreadMessage ? "unread message" : "message"}>
           {lastMessage?.text?.substring(0, 50)}
         </div>
       </div>
