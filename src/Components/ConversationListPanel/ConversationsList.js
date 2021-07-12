@@ -15,7 +15,7 @@ const ConversationsList = () => {
   const [selectedContact, setSelectedContact] =
     useRecoilState(selectedContactState);
 
-  const getData = async () => {
+  const loadData = async () => {
     const newdata = await getActiveContactsByUser(userAuth0ID);
     const sorted = [...newdata].sort((a, b) => {
       const valueA = a.messages[a.messages.length - 1].createdAt;
@@ -29,8 +29,7 @@ const ConversationsList = () => {
   };
 
   useEffect(() => {
-    if (selectedContact) console.log(selectedContact);
-    getData();
+    loadData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedContact]);
 
@@ -40,7 +39,7 @@ const ConversationsList = () => {
     });
     socket.on("smsReceived", (contact) => {
       if (contact.userTwilioPhone === userTwilioPhone) {
-        getData();
+        loadData();
       }
 
       if (selectedContact && contact._id === selectedContact._id) {
