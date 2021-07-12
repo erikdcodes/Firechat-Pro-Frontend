@@ -5,6 +5,7 @@ import ConversationItem from "../ConversationListPanel/ConversationItem";
 import { getActiveContactsByUser } from "../../Data/Axios.js";
 import { useRecoilValue } from "recoil";
 import { userDataState, selectedContactState } from "../../Store/UIState";
+import io from "socket.io-client";
 
 const ConversationsList = () => {
   const [activeLink, setActiveLink] = useState("ACTIVE");
@@ -22,6 +23,19 @@ const ConversationsList = () => {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedContact]);
+
+  useEffect(() => {
+    const socket = io("http://localhost:5000", {
+      transports: ["websocket"],
+    });
+    socket.on("smsReceived", (contact) => {
+      console.log("smsReceived", contact);
+    });
+
+    return () => {
+      socket.removeAllListeners();
+    };
+  }, []);
 
   if (isLoading)
     return (

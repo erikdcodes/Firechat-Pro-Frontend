@@ -1,4 +1,3 @@
-// import { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AppLayout from "./Layouts/AppLayout";
 import Inbox from "./Pages/Inbox";
