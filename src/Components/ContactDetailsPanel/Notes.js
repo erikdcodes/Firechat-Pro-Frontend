@@ -1,9 +1,11 @@
+import { useState } from "react";
 import styled from "styled-components";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import { darken } from "polished";
 import dayjs from "dayjs";
+import { addNote } from "../../Data/Axios";
 
 const noteDate = (date) => {
   return dayjs(date).format("MM/DD/YYYY h:mm A");
@@ -12,13 +14,17 @@ const noteDate = (date) => {
 //component
 
 const Notes = () => {
-  const selectedContact = useRecoilValue(selectedContactState);
+  const [selectedContact, setSelectedContact] =
+    useRecoilState(selectedContactState);
+  const [noteText, setNoteText] = useState("");
 
   const reverseSortedNotes = [...selectedContact?.notes].reverse();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("submiting note");
+    const updatedContact = await addNote(selectedContact._id, noteText);
+    setNoteText("");
+    setSelectedContact(updatedContact);
   };
 
   return (
@@ -26,7 +32,12 @@ const Notes = () => {
       <div className="notes">
         <h4>Notes</h4>
         <form onSubmit={(e) => handleSubmit(e)}>
-          <input type="text" placeholder="add a note" />
+          <input
+            type="text"
+            placeholder="add a note"
+            onChange={(e) => setNoteText(e.target.value)}
+            value={noteText}
+          />
           <input type="submit" style={{ display: "none" }} />
         </form>
         <div

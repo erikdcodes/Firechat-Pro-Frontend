@@ -106,3 +106,18 @@ export const completeNextAction = async (contactID) => {
     return error;
   }
 };
+
+export const addNote = async (contactID, text) => {
+  try {
+    const res = await axios.post(`${URL}/api/contacts/note`, {
+      contactID,
+      noteObj: {
+        text,
+      },
+    });
+    return await res.data.contact;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
