@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import ConversationItem from "../ConversationListPanel/ConversationItem";
 import { getActiveContactsByUser } from "../../Data/Axios.js";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { userDataState, selectedContactState } from "../../Store/UIState";
 import io from "socket.io-client";
 
@@ -11,8 +11,9 @@ const ConversationsList = () => {
   const [activeLink, setActiveLink] = useState("ACTIVE");
   const [contacts, setContacts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { userAuth0ID } = useRecoilValue(userDataState);
-  const selectedContact = useRecoilValue(selectedContactState);
+  const { userAuth0ID, userTwilioPhone } = useRecoilValue(userDataState);
+  const [selectedContact, setSelectedContact] =
+    useRecoilState(selectedContactState);
 
   useEffect(() => {
     const getData = async () => {
@@ -30,12 +31,25 @@ const ConversationsList = () => {
     });
     socket.on("smsReceived", (contact) => {
       console.log("smsReceived", contact);
+      if (contact.userTwilioPhone === userTwilioPhone) {
+        const getData = async () => {
+          const newdata = await getActiveContactsByUser(userAuth0ID);
+          setContacts(newdata);
+          setIsLoading(false);
+        };
+        getData();
+      }
+
+      if (selectedContact && contact._id === selectedContact._id) {
+        console.log("matched selectedContact");
+        setSelectedContact(contact);
+      }
     });
 
     return () => {
       socket.removeAllListeners();
     };
-  }, []);
+  }, [selectedContact]);
 
   if (isLoading)
     return (
