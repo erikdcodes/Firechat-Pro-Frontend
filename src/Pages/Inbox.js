@@ -5,23 +5,27 @@ import ConversationsList from "../Components/ConversationListPanel/Conversations
 import SearchContacts from "../Components/SearchContacts";
 import ContactDetailsPanel from "../Components/ContactDetailsPanel/ContactDetailsPanel";
 import MessagesPanel from "../Components/MessagesPanel/MessagesPanel";
+import AddContactModal from "../Components/AddContactModal";
 
 const Inbox = () => {
   return (
-    <AppLayout>
-      <Wrapper>
-        <div className="left">
-          <SearchContacts />
-          <ConversationsList />
-        </div>
-        <div className="center">
-          <MessagesPanel />
-        </div>
-        <div className="right">
-          <ContactDetailsPanel />
-        </div>
-      </Wrapper>
-    </AppLayout>
+    <>
+      <AddContactModal />
+      <AppLayout>
+        <Wrapper>
+          <div className="left">
+            <SearchContacts />
+            <ConversationsList />
+          </div>
+          <div className="center">
+            <MessagesPanel />
+          </div>
+          <div className="right">
+            <ContactDetailsPanel />
+          </div>
+        </Wrapper>
+      </AppLayout>
+    </>
   );
 };
 

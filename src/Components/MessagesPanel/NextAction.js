@@ -116,7 +116,7 @@ const NextAction = () => {
 };
 
 const Wrapper = styled.div`
-  z-index: 999;
+  z-index: 990;
   position: relative;
 
   .next-action {

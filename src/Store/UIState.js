@@ -19,3 +19,8 @@ export const userDataState = atom({
     __v: 0,
   }, //object
 });
+
+export const isAddContactOpenState = atom({
+  key: "isAddContactOpenState",
+  default: false,
+});

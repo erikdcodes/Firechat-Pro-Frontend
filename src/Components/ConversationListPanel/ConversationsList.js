@@ -3,9 +3,14 @@ import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import ConversationItem from "../ConversationListPanel/ConversationItem";
 import { getActiveContactsByUser } from "../../Data/Axios.js";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { userDataState, selectedContactState } from "../../Store/UIState";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  userDataState,
+  selectedContactState,
+  isAddContactOpenState,
+} from "../../Store/UIState";
 import io from "socket.io-client";
+import AddContactButton from "../AddContactButton";
 
 const ConversationsList = () => {
   const [activeLink, setActiveLink] = useState("ACTIVE");
@@ -68,9 +73,7 @@ const ConversationsList = () => {
         <div className="loading">
           <p>add a contact</p>
 
-          <div className="add-contact-button-container">
-            <button>Add Contact</button>
-          </div>
+          <AddContactButton />
         </div>
       </Wrapper>
     );
@@ -95,9 +98,7 @@ const ConversationsList = () => {
         {contacts?.map((item, i) => (
           <ConversationItem contact={item} key={i + item._id} />
         ))}
-        <div className="add-contact-button-container">
-          <button className="green">Add Contact</button>
-        </div>
+        <AddContactButton />
       </div>
     </Wrapper>
   );
@@ -126,16 +127,6 @@ const Wrapper = styled.div`
 
   .loading {
     padding: 20px;
-  }
-
-  .add-contact-button-container {
-    position: fixed;
-    bottom: 20px;
-    left: 75px;
-
-    button {
-      padding: 15px 20px;
-    }
   }
 `;
 
