@@ -21,8 +21,8 @@ const messageDateConverter = (lastMessageDate) => {
 const ConversationItem = (props) => {
   const { _id, name, contactPhone, messages, hasUnreadMessage } = props.contact;
   const lastMessage = messages[messages.length - 1];
-  const lastMessageDate = messageDateConverter(lastMessage.updatedAt);
-  const lastMessageDateTooltip = dayjs(lastMessage.updatedAt).format(
+  const lastMessageDate = messageDateConverter(lastMessage?.updatedAt);
+  const lastMessageDateTooltip = dayjs(lastMessage?.updatedAt).format(
     "MM/DD/YYYY h:mm A"
   );
   const [selectedContact, setSelectedContact] =

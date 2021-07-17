@@ -23,8 +23,8 @@ const ConversationsList = () => {
   const loadData = async () => {
     const newdata = await getActiveContactsByUser(userAuth0ID);
     const sorted = [...newdata].sort((a, b) => {
-      const valueA = a.messages[a.messages.length - 1].createdAt;
-      const valueB = b.messages[b.messages.length - 1].createdAt;
+      const valueA = a.messages[a.messages.length - 1]?.createdAt;
+      const valueB = b.messages[b.messages.length - 1]?.createdAt;
       if (valueA > valueB) return -1;
       if (valueA < valueB) return 1;
       return 0;

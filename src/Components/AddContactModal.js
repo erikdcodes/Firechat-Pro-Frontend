@@ -1,17 +1,36 @@
 import { useState, useRef } from "react";
 import styled from "styled-components";
 import Input from "react-phone-number-input/input";
-import { useRecoilState } from "recoil";
-import { isAddContactOpenState } from "../Store/UIState";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  isAddContactOpenState,
+  selectedContactState,
+  userDataState,
+} from "../Store/UIState";
+import { styleVariables } from "../GlobalStyles/StyleVariables";
+import { createContact } from "../Data/Axios";
+import Loader from "react-loader-spinner";
 
 const AddContactModal = () => {
   const [isOpen, setIsOpen] = useRecoilState(isAddContactOpenState);
   const [phoneValue, setPhoneValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const modalRef = useRef(null);
+  const { userAuth0ID, userTwilioPhone } = useRecoilValue(userDataState);
+  const setSelectedContact = useSetRecoilState(selectedContactState);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(phoneValue);
+    setIsLoading(true);
+    const newContact = await createContact(
+      userAuth0ID,
+      userTwilioPhone,
+      phoneValue
+    );
+    setIsOpen(false);
+    setIsLoading(false);
+    setSelectedContact(newContact);
+    setPhoneValue("");
   };
 
   const outsideClick = (e) => {
@@ -22,6 +41,15 @@ const AddContactModal = () => {
   };
 
   if (!isOpen) return "";
+  if (isOpen && isLoading)
+    return (
+      <Wrapper>
+        <div className="form-container">
+          <Loader type="Bars" color="#00BFFF" height={50} width={50} />
+        </div>
+      </Wrapper>
+    );
+
   return (
     <Wrapper onClick={(e) => outsideClick(e)} ref={modalRef}>
       <div className="form-container">
@@ -34,7 +62,9 @@ const AddContactModal = () => {
             onChange={setPhoneValue}
           />
           <div className="button-container">
-            <button className="" >cancel</button>
+            <button onClick={() => setIsOpen(false)} className="cancel">
+              cancel
+            </button>
             <button className="button blue" type="submit" value="Add Contact">
               Add Contact
             </button>
@@ -74,5 +104,13 @@ const Wrapper = styled.div`
 
   button {
     align-self: flex-end;
+  }
+
+  .cancel {
+    background-color: transparent;
+    border: none;
+    &:hover {
+      color: ${styleVariables.accentColorBlue};
+    }
   }
 `;

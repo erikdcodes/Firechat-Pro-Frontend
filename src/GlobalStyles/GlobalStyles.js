@@ -100,7 +100,7 @@ export const GlobalStyles = createGlobalStyle`
       color: #fff;
       background:${styleVariables.accentColorPink};
       &:hover {
-        background: ${darken(0.1, styleVariables.accentColorOrange)};
+        background: ${darken(0.1, styleVariables.accentColorPink)};
       }
     }
 

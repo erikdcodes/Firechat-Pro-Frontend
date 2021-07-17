@@ -1,6 +1,25 @@
 import axios from "axios";
 const URL = "http://localhost:5000";
 
+export const createContact = async (
+  userAuth0ID,
+  userTwilioPhone,
+  contactPhone
+) => {
+  try {
+    const res = await axios.post(`${URL}/api/contacts/new`, {
+      userAuth0ID,
+      userTwilioPhone,
+      contactPhone,
+    });
+    const contact = await res.data;
+    console.log(contact.contact, "console from axios.js");
+    return contact.contact;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getAllContactsByUser = async (userAuth0ID) => {
   try {
     const res = await axios.post(`${URL}/api/contacts/`, {
