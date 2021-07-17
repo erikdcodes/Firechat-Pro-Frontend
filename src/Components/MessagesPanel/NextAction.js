@@ -15,7 +15,7 @@ const NextAction = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [actionText, setActionText] = useState("");
   const [startDate, setStartDate] = useState(Date.now());
-  const [checked, setChecked] = useState(false);
+  const [checked] = useState(false);
 
   useEffect(() => {
     handleFinishEditing();

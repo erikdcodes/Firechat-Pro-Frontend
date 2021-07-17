@@ -43,9 +43,9 @@ const AddContactModal = () => {
   if (!isOpen) return "";
   if (isOpen && isLoading)
     return (
-      <Wrapper>
-        <div className="form-container">
-          <Loader type="Bars" color="#00BFFF" height={50} width={50} />
+      <Wrapper onClick={(e) => outsideClick(e)} ref={modalRef}>
+        <div className="form-container loading">
+          <Loader type="Puff" color="#00BFFF" height={75} width={75} />
         </div>
       </Wrapper>
     );
@@ -93,6 +93,11 @@ const Wrapper = styled.div`
     background-color: #fff;
     border-radius: 5px;
     padding: 30px;
+  }
+
+  .loading {
+    display: flex;
+    justify-content: center;
   }
 
   .button-container {

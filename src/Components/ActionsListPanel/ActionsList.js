@@ -1,8 +1,7 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 // import data from "../../FakeData/FakeContacts.js";
-import ActionItem from "../ActionsListPanel/ActionItem";
+// import ActionItem from "../ActionsListPanel/ActionItem";
 
 // const getContactsWithActions = (data) => {
 //   const newData = data.filter((item) => item.nextAction);

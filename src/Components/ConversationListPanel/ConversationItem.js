@@ -86,6 +86,12 @@ const Wrapper = styled.div`
     font-weight: 600;
   }
 
+  .unread::before {
+    content: "";
+    margin-right: 3px;
+    border-left: 3px solid ${styleVariables.accentColorBlue};
+  }
+
   .message {
     font-size: ${styleVariables.smallerTextSize};
   }
