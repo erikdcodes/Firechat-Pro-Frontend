@@ -104,6 +104,14 @@ export const GlobalStyles = createGlobalStyle`
       }
     }
 
+    &.red {
+      color: #fff;
+      background: ${styleVariables.accentColorRed};
+      &:hover {
+        background: ${darken(0.1, styleVariables.accentColorRed)};
+      }
+    }
+
     &.link {
     border: none;
     background-color: transparent;
@@ -112,6 +120,17 @@ export const GlobalStyles = createGlobalStyle`
     
       &:hover {
         color: ${styleVariables.accentColorBlue};
+      }
+    }
+
+    &.red-link {
+      border: none;
+      background-color: transparent;
+      margin: 0 5px;
+      padding: 10px 0;
+
+      &:hover {
+        color: ${styleVariables.accentColorRed};
       }
     }
   }

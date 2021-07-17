@@ -5,6 +5,7 @@ import { useRecoilValue } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
 import ReactTooltip from "react-tooltip";
 import Input, { formatPhoneNumber } from "react-phone-number-input/input";
+import mailIcon from "../../Images/mail-icon.png";
 
 const ContactInfo = () => {
   const selectedContact = useRecoilValue(selectedContactState);
@@ -72,10 +73,13 @@ const ContactInfo = () => {
           </div>
         </div>
         <div className="button-container">
-          <button onClick={() => setIsEditing(false)} className="link">
-            cancel
-          </button>
-          <button className="green">save</button>
+          <button className="red-link">delete</button>
+          <div className="save-buttons">
+            <button onClick={() => setIsEditing(false)} className="link">
+              cancel
+            </button>
+            <button className="green">save</button>
+          </div>
         </div>
       </Wrapper>
     );
@@ -106,7 +110,7 @@ const ContactInfo = () => {
           {formatPhoneNumber(selectedContact?.contactPhone)}
         </p>
         <p>
-          <span className=" icon orange">E:</span> {selectedContact?.email}
+          <span className=" icon orange">E: </span> {selectedContact?.email}
         </p>
         <p>
           <span className=" icon green">A:</span> {selectedContact?.address}
@@ -169,7 +173,7 @@ const Wrapper = styled.div`
 
   .button-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     border-bottom: 2px solid ${styleVariables.bgColor1};
   }
 `;
