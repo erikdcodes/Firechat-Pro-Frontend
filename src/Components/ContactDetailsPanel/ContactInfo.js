@@ -13,10 +13,7 @@ const ContactInfo = () => {
   const [phoneValue, setPhoneValue] = useState(selectedContact?.contactPhone);
 
   const displayName = () => {
-    const firstName = selectedContact.firstName
-      ? selectedContact.firstName
-      : "";
-    const lastName = selectedContact.lastName ? selectedContact.lastName : "";
+    const { firstName, lastName } = selectedContact;
 
     if (firstName && lastName) return `${firstName} ${lastName}`;
     if (firstName && !lastName) return `${firstName}`;

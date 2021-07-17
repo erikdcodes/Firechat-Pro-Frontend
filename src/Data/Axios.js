@@ -13,7 +13,6 @@ export const createContact = async (
       contactPhone,
     });
     const contact = await res.data;
-    console.log(contact.contact, "console from axios.js");
     return contact.contact;
   } catch (error) {
     console.log(error);
