@@ -19,7 +19,8 @@ const messageDateConverter = (lastMessageDate) => {
 
 // component
 const ConversationItem = (props) => {
-  const { _id, name, contactPhone, messages, hasUnreadMessage } = props.contact;
+  const { _id, firstName, contactPhone, messages, hasUnreadMessage } =
+    props.contact;
   const lastMessage = messages[messages.length - 1];
   const lastMessageDate = messageDateConverter(lastMessage?.updatedAt);
   const lastMessageDateTooltip = dayjs(lastMessage?.updatedAt).format(
@@ -47,7 +48,7 @@ const ConversationItem = (props) => {
       >
         <div className="conversation-header">
           <div className="name">
-            {name ? name : formatPhoneNumber(contactPhone)}
+            {firstName ? firstName : formatPhoneNumber(contactPhone)}
           </div>
           <div className="date" data-tip={lastMessageDateTooltip}>
             {lastMessageDate}

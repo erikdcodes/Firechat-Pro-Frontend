@@ -5,13 +5,24 @@ import { useRecoilValue } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
 import ReactTooltip from "react-tooltip";
 import Input, { formatPhoneNumber } from "react-phone-number-input/input";
-import mailIcon from "../../Images/mail-icon.png";
 
 const ContactInfo = () => {
   const selectedContact = useRecoilValue(selectedContactState);
 
   const [isEditing, setIsEditing] = useState(false);
   const [phoneValue, setPhoneValue] = useState(selectedContact?.contactPhone);
+
+  const displayName = () => {
+    const firstName = selectedContact.firstName
+      ? selectedContact.firstName
+      : "";
+    const lastName = selectedContact.lastName ? selectedContact.lastName : "";
+
+    if (firstName && lastName) return `${firstName} ${lastName}`;
+    if (firstName && !lastName) return `${firstName}`;
+    if (!firstName && lastName) return `${lastName}`;
+    return "";
+  };
 
   // resets phone value when new contact selected & closes editing form
   useEffect(() => {
@@ -91,8 +102,8 @@ const ContactInfo = () => {
     >
       <ReactTooltip delayShow={500} effect="solid" />
       <div className="header">
-        {selectedContact.name ? (
-          <div className="name"> {selectedContact.name} </div>
+        {displayName() ? (
+          <div className="name"> {displayName()} </div>
         ) : (
           <div className="name missing">Add name</div>
         )}
@@ -120,6 +131,7 @@ const ContactInfo = () => {
   );
 };
 
+// styling
 const Wrapper = styled.div`
   cursor: pointer;
   user-select: none;
