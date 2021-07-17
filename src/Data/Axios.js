@@ -58,6 +58,30 @@ export const getAContact = async (contactID) => {
   }
 };
 
+export const editContact = async (contactID, updatedContactObj) => {
+  try {
+    const res = await axios.patch(`${URL}/api/contacts/edit`, {
+      contactID,
+      updatedContactObj,
+    });
+    const contact = await res.data;
+    return contact.contact;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteContact = async (contactID) => {
+  try {
+    await axios.post(`${URL}/api/contacts/delete`, {
+      contactID,
+    });
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
 export const sendMessage = async (
   userAuth0ID,
   userTwilioPhone,
