@@ -5,7 +5,7 @@ import { useRecoilState } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
 import ReactTooltip from "react-tooltip";
 import Input, { formatPhoneNumber } from "react-phone-number-input/input";
-import { editContact } from "../../Data/Axios.js";
+import { deleteContact, editContact } from "../../Data/Axios.js";
 
 const ContactInfo = () => {
   const [selectedContact, setSelectedContact] =
@@ -40,9 +40,18 @@ const ContactInfo = () => {
       address: address.value,
       backgroundInfo: backgroundInfo.value,
     });
-    console.log(updated);
+    console.log("updated", updated);
     setSelectedContact(updated);
     setIsEditing(false);
+  };
+
+  const handleDeleteContact = async () => {
+    if (
+      window.confirm(`Delete ${displayName() || formatPhoneNumber(phoneValue)}`)
+    ) {
+      await deleteContact(selectedContact._id);
+      setSelectedContact(null);
+    }
   };
 
   // component starts
@@ -112,12 +121,22 @@ const ContactInfo = () => {
             </div>
           </div>
           <div className="button-container">
-            <button className="red-link">delete</button>
+            <button
+              type="button"
+              onClick={handleDeleteContact}
+              className="red-link"
+            >
+              delete
+            </button>
             <div className="save-buttons">
-              <button onClick={() => setIsEditing(false)} className="link">
+              <button
+                type="button"
+                onClick={() => setIsEditing(false)}
+                className="link"
+              >
                 cancel
               </button>
-              <button onClick={(e) => handleEditContact(e)} className="green">
+              <button type="submit" className="green">
                 save
               </button>
             </div>
