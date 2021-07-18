@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import { useRecoilState } from "recoil";
@@ -12,6 +12,7 @@ const ContactInfo = () => {
     useRecoilState(selectedContactState);
   const [isEditing, setIsEditing] = useState(false);
   const [phoneValue, setPhoneValue] = useState(selectedContact?.contactPhone);
+  const formRef = useRef(null);
 
   // resets phone value when new contact selected & closes editing form
   useEffect(() => {
@@ -28,9 +29,15 @@ const ContactInfo = () => {
     return "";
   };
 
-  const handleEditContact = async () => {
+  const handleEditContact = async (e) => {
+    e.preventDefault();
+    const { firstName, lastName, email, address, background } = formRef.current;
     const updated = await editContact(selectedContact._id, {
-      firstName: "Edited",
+      firstName: firstName.value,
+      lastName: lastName.value,
+      email: email.value,
+      address: address.value,
+      background: background.value,
     });
     setSelectedContact(updated);
     setIsEditing(false);
@@ -43,70 +50,77 @@ const ContactInfo = () => {
   if (isEditing)
     return (
       <Wrapper>
-        <div className="header">
-          <input
-            type="text"
-            placeholder="First Name"
-            defaultValue={selectedContact.firstName}
-          />
-          <input
-            type="text"
-            placeholder="Last Name"
-            defaultValue={selectedContact.lastName}
-          />
-          <input
-            type="text"
-            placeholder="Background Info"
-            defaultValue={selectedContact.background}
-          />
-        </div>
-
-        <div className="contact-info">
-          <div className="form-group">
-            <span className=" icon pink">P:</span>
-            <div className="input-wrapper">
-              <Input
-                defaultCountry="US"
-                placeholder="Enter phone number"
-                value={phoneValue}
-                onChange={setPhoneValue}
-              />
-            </div>
+        <form ref={formRef}>
+          <div className="header">
+            <input
+              type="text"
+              placeholder="First Name"
+              name="firstName"
+              defaultValue={selectedContact.firstName}
+            />
+            <input
+              type="text"
+              placeholder="Last Name"
+              name="lastName"
+              defaultValue={selectedContact.lastName}
+            />
+            <input
+              type="text"
+              placeholder="Background Info"
+              name="background"
+              defaultValue={selectedContact.background}
+            />
           </div>
 
-          <div className="form-group">
-            <span className=" icon orange">E:</span>
-            <div className="input-wrapper">
-              <input
-                type="text"
-                placeholder="add email"
-                defaultValue={selectedContact.email}
-              />
+          <div className="contact-info">
+            <div className="form-group">
+              <span className=" icon pink">P:</span>
+              <div className="input-wrapper">
+                <Input
+                  defaultCountry="US"
+                  placeholder="Enter phone number"
+                  value={phoneValue}
+                  onChange={setPhoneValue}
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="form-group">
-            <span className=" icon green">A:</span>
-            <div className="input-wrapper">
-              <input
-                type="text"
-                placeholder="add address"
-                defaultValue={selectedContact.address}
-              />
+            <div className="form-group">
+              <span className=" icon orange">E:</span>
+              <div className="input-wrapper">
+                <input
+                  type="text"
+                  placeholder="add email"
+                  name="email"
+                  defaultValue={selectedContact.email}
+                />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <span className=" icon green">A:</span>
+              <div className="input-wrapper">
+                <input
+                  type="text"
+                  placeholder="add address"
+                  name="address"
+                  defaultValue={selectedContact.address}
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="button-container">
-          <button className="red-link">delete</button>
-          <div className="save-buttons">
-            <button onClick={() => setIsEditing(false)} className="link">
-              cancel
-            </button>
-            <button onClick={() => handleEditContact()} className="green">
-              save
-            </button>
+          <div className="button-container">
+            <button className="red-link">delete</button>
+            <div className="save-buttons">
+              <button onClick={() => setIsEditing(false)} className="link">
+                cancel
+              </button>
+              <button onClick={(e) => handleEditContact(e)} className="green">
+                save
+              </button>
+            </div>
           </div>
-        </div>
+        </form>
       </Wrapper>
     );
 
