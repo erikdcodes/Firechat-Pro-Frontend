@@ -40,7 +40,6 @@ const ContactInfo = () => {
       address: address.value,
       backgroundInfo: backgroundInfo.value,
     });
-    console.log("updated", updated);
     setSelectedContact(updated);
     setIsEditing(false);
   };
