@@ -89,7 +89,7 @@ const Wrapper = styled.div`
 
   .unread::before {
     content: "";
-    margin-right: 3px;
+    margin-right: 10px;
     border-left: 3px solid ${styleVariables.accentColorBlue};
   }
 

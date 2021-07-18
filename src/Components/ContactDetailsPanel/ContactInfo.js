@@ -8,7 +8,6 @@ import Input, { formatPhoneNumber } from "react-phone-number-input/input";
 
 const ContactInfo = () => {
   const selectedContact = useRecoilValue(selectedContactState);
-
   const [isEditing, setIsEditing] = useState(false);
   const [phoneValue, setPhoneValue] = useState(selectedContact?.contactPhone);
 
@@ -35,12 +34,17 @@ const ContactInfo = () => {
         <div className="header">
           <input
             type="text"
-            placeholder="add Name"
-            defaultValue={selectedContact.name}
+            placeholder="First Name"
+            defaultValue={selectedContact.firstName}
           />
           <input
             type="text"
-            placeholder="add background info"
+            placeholder="Last Name"
+            defaultValue={selectedContact.lastName}
+          />
+          <input
+            type="text"
+            placeholder="Background Info"
             defaultValue={selectedContact.background}
           />
         </div>
