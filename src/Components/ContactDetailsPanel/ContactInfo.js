@@ -31,14 +31,16 @@ const ContactInfo = () => {
 
   const handleEditContact = async (e) => {
     e.preventDefault();
-    const { firstName, lastName, email, address, background } = formRef.current;
+    const { firstName, lastName, email, address, backgroundInfo } =
+      formRef.current;
     const updated = await editContact(selectedContact._id, {
       firstName: firstName.value,
       lastName: lastName.value,
       email: email.value,
       address: address.value,
-      background: background.value,
+      backgroundInfo: backgroundInfo.value,
     });
+    console.log(updated);
     setSelectedContact(updated);
     setIsEditing(false);
   };
@@ -50,7 +52,7 @@ const ContactInfo = () => {
   if (isEditing)
     return (
       <Wrapper>
-        <form ref={formRef}>
+        <form onSubmit={(e) => handleEditContact(e)} ref={formRef}>
           <div className="header">
             <input
               type="text"
@@ -67,8 +69,8 @@ const ContactInfo = () => {
             <input
               type="text"
               placeholder="Background Info"
-              name="background"
-              defaultValue={selectedContact.background}
+              name="backgroundInfo"
+              defaultValue={selectedContact.backgroundInfo}
             />
           </div>
 
@@ -137,8 +139,8 @@ const ContactInfo = () => {
           <div className="name missing">Add name</div>
         )}
 
-        {selectedContact.background ? (
-          selectedContact.background
+        {selectedContact.backgroundInfo ? (
+          selectedContact.backgroundInfo
         ) : (
           <div className="missing">Add background info</div>
         )}
