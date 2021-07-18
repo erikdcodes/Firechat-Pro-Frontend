@@ -1,15 +1,23 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
 import ReactTooltip from "react-tooltip";
 import Input, { formatPhoneNumber } from "react-phone-number-input/input";
+import { editContact } from "../../Data/Axios.js";
 
 const ContactInfo = () => {
-  const selectedContact = useRecoilValue(selectedContactState);
+  const [selectedContact, setSelectedContact] =
+    useRecoilState(selectedContactState);
   const [isEditing, setIsEditing] = useState(false);
   const [phoneValue, setPhoneValue] = useState(selectedContact?.contactPhone);
+
+  // resets phone value when new contact selected & closes editing form
+  useEffect(() => {
+    setPhoneValue(selectedContact?.contactPhone);
+    setIsEditing(false);
+  }, [selectedContact]);
 
   const displayName = () => {
     const { firstName, lastName } = selectedContact;
@@ -20,11 +28,15 @@ const ContactInfo = () => {
     return "";
   };
 
-  // resets phone value when new contact selected & closes editing form
-  useEffect(() => {
-    setPhoneValue(selectedContact?.contactPhone);
+  const handleEditContact = async () => {
+    const updated = await editContact(selectedContact._id, {
+      firstName: "Edited",
+    });
+    setSelectedContact(updated);
     setIsEditing(false);
-  }, [selectedContact]);
+  };
+
+  // component starts
 
   if (!selectedContact) return null;
 
@@ -90,7 +102,9 @@ const ContactInfo = () => {
             <button onClick={() => setIsEditing(false)} className="link">
               cancel
             </button>
-            <button className="green">save</button>
+            <button onClick={() => handleEditContact()} className="green">
+              save
+            </button>
           </div>
         </div>
       </Wrapper>
