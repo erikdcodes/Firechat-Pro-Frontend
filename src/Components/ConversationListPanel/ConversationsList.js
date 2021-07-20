@@ -10,6 +10,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { userDataState, selectedContactState } from "../../Store/UIState";
 import io from "socket.io-client";
 import AddContactButton from "../AddContactButton";
+const URL = process.env.REACT_APP_SERVER_URL;
 
 const ConversationsList = () => {
   const [activeLink, setActiveLink] = useState("ACTIVE");
@@ -44,7 +45,7 @@ const ConversationsList = () => {
   }, [selectedContact, activeLink]);
 
   useEffect(() => {
-    const socket = io("http://localhost:5000", {
+    const socket = io(URL, {
       transports: ["websocket"],
     });
     socket.on("smsReceived", (contact) => {
@@ -61,7 +62,7 @@ const ConversationsList = () => {
       socket.removeAllListeners();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedContact]);
+  }, []);
 
   if (isLoading)
     return (
