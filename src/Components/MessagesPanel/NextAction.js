@@ -48,32 +48,34 @@ const NextAction = () => {
 
   if (isEditing) {
     return (
-      <Wrapper>
-        <div className="next-action">
-          <h4>Next Action</h4>
-          <input
-            value={actionText}
-            onChange={(e) => setActionText(e.target.value)}
-            type="text"
-            name="next-action-item"
-            placeholder="add next action"
-          />
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            showTimeSelect
-            dateFormat="Pp"
-          />
+      <ModalWrapper>
+        <div className="form-container">
+          <div className="next-action">
+            <h4>Next Action</h4>
+            <input
+              value={actionText}
+              onChange={(e) => setActionText(e.target.value)}
+              type="text"
+              name="next-action-item"
+              placeholder="add next action"
+            />
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              showTimeSelect
+              dateFormat="Pp"
+            />
+          </div>
+          <div className="button-container">
+            <button onClick={handleFinishEditing} className="link">
+              cancel
+            </button>
+            <button onClick={handleSaveAction} className="button blue">
+              save
+            </button>
+          </div>
         </div>
-        <div className="button-container">
-          <button onClick={handleFinishEditing} className="link">
-            cancel
-          </button>
-          <button onClick={handleSaveAction} className="green">
-            save
-          </button>
-        </div>
-      </Wrapper>
+      </ModalWrapper>
     );
   }
 
@@ -115,6 +117,8 @@ const NextAction = () => {
   }
 };
 
+// styling
+
 const Wrapper = styled.div`
   z-index: 990;
   position: relative;
@@ -129,14 +133,43 @@ const Wrapper = styled.div`
     }
   }
 
+  .missing {
+    color: ${styleVariables.secondaryTextColor};
+  }
+  .editing-background {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -800;
+    outline: 1px solid red;
+  }
+`;
+
+const ModalWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  .form-container {
+    margin-top: 150px;
+    width: 500px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 30px;
+  }
+
   .button-container {
     display: flex;
     justify-content: flex-end;
-    border-bottom: 2px solid ${styleVariables.bgColor1};
-  }
-
-  .missing {
-    color: ${styleVariables.secondaryTextColor};
   }
 `;
 
