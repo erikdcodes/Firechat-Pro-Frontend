@@ -1,28 +1,68 @@
 import styled from "styled-components";
+import dayjs from "dayjs";
+import calendar from "dayjs/plugin/calendar";
+import ReactTooltip from "react-tooltip";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import { useRecoilState } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
 import { formatPhoneNumber } from "react-phone-number-input/input";
 
-const ActionItem = (props) => {
-  const { id, name, phone, nextAction } = props.contact;
+dayjs.extend(calendar);
 
-  const [selectedContact, setSelectedContact] = useRecoilState(
-    selectedContactState
-  );
+const messageDateConverter = (dueDate) => {
+  const dueDateObj = dayjs(dueDate);
+
+  return dayjs(dueDateObj).format("MM/DD/YYYY h:mm A");
+};
+
+const relativeDue = (dueDate) => {
+  const now = dayjs();
+  const dueDateObj = dayjs(dueDate);
+  if (dueDateObj.isBefore(now)) return "PASTDUE";
+  if (dueDateObj.isSame(now, "day")) return "DUETODAY";
+  return;
+};
+
+// component
+const ActionItem = (props) => {
+  const { _id, firstName, contactPhone, nextAction } = props.contact;
+  const dueDate = messageDateConverter(nextAction.dueDate);
+  const dueDateTooltip = dayjs(nextAction.dueDate).format("MM/DD/YYYY h:mm A");
+  const [selectedContact, setSelectedContact] =
+    useRecoilState(selectedContactState);
+
+  const handleClick = async () => {
+    if (props.contact?._id === selectedContact?._id) return;
+    setSelectedContact(props.contact);
+    return;
+  };
 
   return (
-    <Wrapper onClick={() => setSelectedContact(props.contact)}>
+    <Wrapper onClick={handleClick}>
       <div
         className={
-          selectedContact?.id === id ? "selected container" : "container"
+          selectedContact?._id === _id ? "selected container" : "container"
         }
       >
         <div className="conversation-header">
-          <div className="name">{name ? name : formatPhoneNumber(phone)}</div>
-          <div className="date">Due: {nextAction.dueDate}</div>
+          <div className="name">
+            {firstName ? firstName : formatPhoneNumber(contactPhone)}
+          </div>
+          <div
+            className={
+              relativeDue(dueDate) === "PASTDUE"
+                ? "past date"
+                : relativeDue(dueDate) === "DUETODAY"
+                ? " today date"
+                : "date "
+            }
+            data-tip={dueDateTooltip}
+          >
+            Due: {dueDate}
+          </div>
+          <ReactTooltip delayShow={300} effect="solid" />
         </div>
-        <div className="message">{nextAction.task.substring(0, 50)}</div>
+        <div className="message">{nextAction?.text?.substring(0, 50)}</div>
       </div>
     </Wrapper>
   );
@@ -37,15 +77,32 @@ const Wrapper = styled.div`
   .conversation-header {
     margin-bottom: 5px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     font-weight: 600;
   }
 
   .date {
-    color: ${styleVariables.secondaryTextColor};
-    font-size: ${styleVariables.smallestTextSize};
+    color: ${styleVariables.primaryTextColor};
+    font-size: ${styleVariables.smallerTextSize};
     font-weight: 400;
+  }
+
+  .past {
+    color: ${styleVariables.accentColorRed};
+  }
+
+  .today {
+    color: ${styleVariables.accentColorBlue};
+  }
+
+  .unread {
+    font-weight: 600;
+  }
+
+  .unread::before {
+    content: "";
+    margin-right: 10px;
+    border-left: 3px solid ${styleVariables.accentColorBlue};
   }
 
   .message {

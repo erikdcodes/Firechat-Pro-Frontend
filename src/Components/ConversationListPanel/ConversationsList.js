@@ -21,21 +21,15 @@ const ConversationsList = () => {
     useRecoilState(selectedContactState);
 
   const loadData = async (activeLink) => {
-    let newdata;
+    let contactsData;
     if (activeLink === "ACTIVE") {
-      newdata = await getActiveContactsByUser(userAuth0ID);
+      contactsData = await getActiveContactsByUser(userAuth0ID); //active contacts
     }
     if (activeLink === "ALL") {
-      newdata = await getAllContactsByUser(userAuth0ID);
+      contactsData = await getAllContactsByUser(userAuth0ID); //all contacts
     }
-    const sorted = [...newdata].sort((a, b) => {
-      const valueA = a.messages[a.messages.length - 1]?.createdAt;
-      const valueB = b.messages[b.messages.length - 1]?.createdAt;
-      if (valueA > valueB) return -1;
-      if (valueA < valueB) return 1;
-      return 0;
-    });
-    setContacts(sorted);
+
+    setContacts(contactsData);
     setIsLoading(false);
   };
 

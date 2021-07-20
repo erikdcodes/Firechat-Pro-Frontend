@@ -149,6 +149,18 @@ export const completeNextAction = async (contactID) => {
   }
 };
 
+export const getAllNextActions = async (userAuth0ID) => {
+  try {
+    const res = await axios.post(`${URL}/api/contacts/nextactions/`, {
+      userAuth0ID,
+    });
+    const contacts = await res.data;
+    return contacts.contacts;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const addNote = async (contactID, text) => {
   try {
     const res = await axios.post(`${URL}/api/contacts/note`, {
