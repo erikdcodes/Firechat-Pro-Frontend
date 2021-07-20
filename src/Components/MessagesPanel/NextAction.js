@@ -136,16 +136,6 @@ const Wrapper = styled.div`
   .missing {
     color: ${styleVariables.secondaryTextColor};
   }
-  .editing-background {
-    background: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: -800;
-    outline: 1px solid red;
-  }
 `;
 
 const ModalWrapper = styled.div`
