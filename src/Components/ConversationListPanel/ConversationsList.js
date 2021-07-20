@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import ConversationItem from "../ConversationListPanel/ConversationItem";
-import { getActiveContactsByUser } from "../../Data/Axios.js";
+import {
+  getActiveContactsByUser,
+  getAllContactsByUser,
+} from "../../Data/Axios.js";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userDataState, selectedContactState } from "../../Store/UIState";
 import io from "socket.io-client";
@@ -16,8 +19,14 @@ const ConversationsList = () => {
   const [selectedContact, setSelectedContact] =
     useRecoilState(selectedContactState);
 
-  const loadData = async () => {
-    const newdata = await getActiveContactsByUser(userAuth0ID);
+  const loadData = async (activeLink) => {
+    let newdata;
+    if (activeLink === "ACTIVE") {
+      newdata = await getActiveContactsByUser(userAuth0ID);
+    }
+    if (activeLink === "ALL") {
+      newdata = await getAllContactsByUser(userAuth0ID);
+    }
     const sorted = [...newdata].sort((a, b) => {
       const valueA = a.messages[a.messages.length - 1]?.createdAt;
       const valueB = b.messages[b.messages.length - 1]?.createdAt;
@@ -30,9 +39,9 @@ const ConversationsList = () => {
   };
 
   useEffect(() => {
-    loadData();
+    loadData(activeLink);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedContact]);
+  }, [selectedContact, activeLink]);
 
   useEffect(() => {
     const socket = io("http://localhost:5000", {
