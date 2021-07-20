@@ -5,7 +5,6 @@ import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import { useRecoilValue } from "recoil";
 import { selectedContactState, userDataState } from "../../Store/UIState";
 import ActionItem from "./ActionItem.js";
-import ConversationItem from "../ConversationListPanel/ConversationItem";
 
 // component starts
 const ActionsList = () => {
