@@ -49,7 +49,7 @@ const ConversationsList = () => {
     });
     socket.on("smsReceived", (contact) => {
       if (contact.userTwilioPhone === userTwilioPhone) {
-        loadData();
+        loadData(activeLink);
       }
 
       if (selectedContact && contact._id === selectedContact._id) {
