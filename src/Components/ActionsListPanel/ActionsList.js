@@ -40,9 +40,12 @@ const Wrapper = styled.div`
   height: 100%;
   .header {
     padding: 10px 30px;
-    /* display: flex; */
-    /* justify-content: space-between; */
     border-bottom: 2px solid ${styleVariables.bgColor1};
+  }
+  .list-wrapper {
+    height: 100%;
+    padding-bottom: 200px;
+    overflow-y: scroll;
   }
 `;
 
