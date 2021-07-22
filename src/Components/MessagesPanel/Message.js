@@ -1,11 +1,25 @@
 import styled from "styled-components";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
 import dayjs from "dayjs";
+import calendar from "dayjs/plugin/calendar";
+dayjs.extend(calendar);
 
 const Message = (props) => {
   const { text, updatedAt, direction, status } = props.message;
 
-  const messageDate = dayjs(updatedAt).format("MM/DD/YYYY h:mm A");
+  const relativeDate = (date) => {
+    const relative = dayjs(date).calendar(null, {
+      sameDay: "[Today] h:mm A", // The same day ( Today at 2:30 AM )
+      nextDay: "[Tomorrow at] h:mm A", // The next day ( Tomorrow at 2:30 AM )
+      nextWeek: "[This] dddd", // The next week ( Sunday at 2:30 AM )
+      lastDay: "[Yesterday] h:mm A", // The day before ( Yesterday at 2:30 AM )
+      lastWeek: "MM/DD/YYYY h:mm A", // Last week ( Last Monday at 2:30 AM )
+      sameElse: "MM/DD/YYYY h:mm A", // Everything else ( 7/10/2011 )
+    });
+    return relative;
+  };
+
+  const messageDate = relativeDate(updatedAt);
 
   return (
     <Wrapper>

@@ -33,7 +33,6 @@ const relativeDue = (dueDate) => {
     sameElse: "MM/DD/YYYY [at] h:mm A", // Everything else ( 7/10/2011 )
   });
 
-  console.log(relative);
   return relative;
 };
 
