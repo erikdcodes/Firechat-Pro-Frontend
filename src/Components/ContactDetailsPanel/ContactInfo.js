@@ -79,6 +79,7 @@ const ContactInfo = () => {
               placeholder="Background Info"
               name="backgroundInfo"
               defaultValue={selectedContact.backgroundInfo}
+              maxLength="125"
             />
           </div>
 
