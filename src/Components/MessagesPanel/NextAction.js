@@ -7,7 +7,31 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { darken } from "polished";
 import dayjs from "dayjs";
+import calendar from "dayjs/plugin/calendar";
 import { addNextAction, addNote, completeNextAction } from "../../Data/Axios";
+
+dayjs.extend(calendar);
+
+const relativeDue = (dueDate) => {
+  const relative = dayjs(dueDate).calendar(null, {
+    sameDay: "[Today at] h:mm A", // The same day ( Today at 2:30 AM )
+    nextDay: "[Tomorrow at] h:mm A", // The next day ( Tomorrow at 2:30 AM )
+    nextWeek: "[This] dddd", // The next week ( Sunday at 2:30 AM )
+    lastDay: "[Yesterday]", // The day before ( Yesterday at 2:30 AM )
+    lastWeek: "[Last] dddd MM/DD/YYYY", // Last week ( Last Monday at 2:30 AM )
+    sameElse: "MM/DD/YYYY [at] h:mm A", // Everything else ( 7/10/2011 )
+  });
+
+  return relative;
+};
+
+const isDue = (dueDate) => {
+  const now = dayjs();
+  const dueDateObj = dayjs(dueDate);
+  if (dueDateObj.isBefore(now)) return "PASTDUE";
+  if (dueDateObj.isSame(now, "day")) return "DUETODAY";
+  return;
+};
 
 const NextAction = () => {
   const [selectedContact, setSelectedContact] =
@@ -94,11 +118,20 @@ const NextAction = () => {
           <label style={{ marginLeft: "10px" }} htmlFor="next-action-item">
             {selectedContact.nextAction.text}
           </label>
-          <p className="due-date">
+          <p
+            className={
+              isDue(selectedContact.nextAction.dueDate) === "PASTDUE"
+                ? "past"
+                : isDue(selectedContact.nextAction.dueDate) === "DUETODAY"
+                ? "today"
+                : ""
+            }
+          >
             Due:{" "}
-            {dayjs(selectedContact.nextAction.dueDate).format(
+            {/* {dayjs(selectedContact.nextAction.dueDate).format(
               "MM-DD-YYYY h:mm A"
-            )}
+            )} */}
+            {relativeDue(selectedContact.nextAction.dueDate)}
           </p>
         </div>
       </Wrapper>
@@ -135,6 +168,14 @@ const Wrapper = styled.div`
 
   .missing {
     color: ${styleVariables.secondaryTextColor};
+  }
+
+  .past {
+    color: ${styleVariables.accentColorRed};
+  }
+
+  .today {
+    color: ${styleVariables.accentColorBlue};
   }
 `;
 
