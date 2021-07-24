@@ -10,15 +10,6 @@ import { markAsRead } from "../../Data/Axios";
 
 dayjs.extend(calendar);
 
-const messageDateConverter = (lastMessageDate) => {
-  const now = dayjs();
-  const lastMessageObj = dayjs(lastMessageDate);
-  const difference = now.diff(lastMessageObj, "hour");
-
-  if (difference < 12) return dayjs(lastMessageObj).format("h:mm A");
-  return dayjs(lastMessageObj).format("MM/DD/YYYY");
-};
-
 const relativeDate = (date) => {
   const relative = dayjs(date).calendar(null, {
     sameDay: "[Today] h:mm A", // The same day ( Today at 2:30 AM )

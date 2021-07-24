@@ -118,7 +118,7 @@ const Wrapper = styled.div`
   }
 
   .today {
-    color: ${styleVariables.accentColorBlue};
+    color: ${styleVariables.accentColorGreen};
   }
 
   .unread {

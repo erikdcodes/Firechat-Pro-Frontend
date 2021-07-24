@@ -118,20 +118,22 @@ const NextAction = () => {
           <label style={{ marginLeft: "10px" }} htmlFor="next-action-item">
             {selectedContact.nextAction.text}
           </label>
-          <p
-            className={
-              isDue(selectedContact.nextAction.dueDate) === "PASTDUE"
-                ? "past"
-                : isDue(selectedContact.nextAction.dueDate) === "DUETODAY"
-                ? "today"
-                : ""
-            }
-          >
+          <p className="due-date">
             Due:{" "}
             {/* {dayjs(selectedContact.nextAction.dueDate).format(
               "MM-DD-YYYY h:mm A"
             )} */}
-            {relativeDue(selectedContact.nextAction.dueDate)}
+            <span
+              className={
+                isDue(selectedContact.nextAction.dueDate) === "PASTDUE"
+                  ? "past"
+                  : isDue(selectedContact.nextAction.dueDate) === "DUETODAY"
+                  ? "today"
+                  : ""
+              }
+            >
+              {relativeDue(selectedContact.nextAction.dueDate)}
+            </span>
           </p>
         </div>
       </Wrapper>
@@ -162,7 +164,7 @@ const Wrapper = styled.div`
 
     .due-date {
       font-size: ${styleVariables.smallerTextSize};
-      color: ${styleVariables.accentColorBlue};
+      font-weight: 900;
     }
   }
 
@@ -175,7 +177,7 @@ const Wrapper = styled.div`
   }
 
   .today {
-    color: ${styleVariables.accentColorBlue};
+    color: ${styleVariables.accentColorGreen};
   }
 `;
 
