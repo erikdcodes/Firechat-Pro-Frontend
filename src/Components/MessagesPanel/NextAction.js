@@ -33,6 +33,8 @@ const isDue = (dueDate) => {
   return;
 };
 
+// component start
+
 const NextAction = () => {
   const [selectedContact, setSelectedContact] =
     useRecoilState(selectedContactState);
@@ -120,9 +122,6 @@ const NextAction = () => {
           </label>
           <p className="due-date">
             Due:{" "}
-            {/* {dayjs(selectedContact.nextAction.dueDate).format(
-              "MM-DD-YYYY h:mm A"
-            )} */}
             <span
               className={
                 isDue(selectedContact.nextAction.dueDate) === "PASTDUE"
