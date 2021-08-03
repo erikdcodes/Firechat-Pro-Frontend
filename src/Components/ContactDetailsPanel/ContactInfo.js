@@ -6,6 +6,7 @@ import { selectedContactState } from "../../Store/UIState";
 import ReactTooltip from "react-tooltip";
 import Input, { formatPhoneNumber } from "react-phone-number-input/input";
 import { deleteContact, editContact } from "../../Data/Axios.js";
+import { FaPhoneAlt, FaEnvelope, FaStreetView } from "react-icons/fa";
 
 const ContactInfo = () => {
   const [selectedContact, setSelectedContact] =
@@ -150,7 +151,7 @@ const ContactInfo = () => {
       data-tip="Double-click to edit"
       onDoubleClick={() => setIsEditing(true)}
     >
-      <ReactTooltip delayShow={500} effect="solid" />
+      <ReactTooltip effect="solid" />
       <div className="header">
         {displayName() ? (
           <div className="name"> {displayName()} </div>
@@ -167,14 +168,22 @@ const ContactInfo = () => {
 
       <div className="contact-info">
         <p>
-          <span className=" icon pink">P: </span>
+          <span className=" icon pink">
+            <FaPhoneAlt size={19} />{" "}
+          </span>
           {formatPhoneNumber(selectedContact?.contactPhone)}
         </p>
         <p>
-          <span className=" icon orange">E: </span> {selectedContact?.email}
+          <span className=" icon orange">
+            <FaEnvelope size={19} />{" "}
+          </span>{" "}
+          {selectedContact?.email}
         </p>
         <p>
-          <span className=" icon green">A:</span> {selectedContact?.address}
+          <span className=" icon green">
+            <FaStreetView size={19} />{" "}
+          </span>{" "}
+          {selectedContact?.address}
         </p>
       </div>
     </Wrapper>
@@ -216,6 +225,7 @@ const Wrapper = styled.div`
 
     .icon {
       font-weight: 600;
+      vertical-align: middle;
 
       &.orange {
         color: ${styleVariables.accentColorOrange};

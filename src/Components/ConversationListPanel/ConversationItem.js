@@ -66,7 +66,7 @@ const ConversationItem = (props) => {
           <div className="date" data-tip={lastMessageDateTooltip}>
             {relativeDate(lastMessageDateRaw)}
           </div>
-          <ReactTooltip delayShow={300} effect="solid" />
+          <ReactTooltip effect="solid" />
         </div>
         <div className={hasUnreadMessage ? "unread message" : "message"}>
           {lastMessage?.text?.substring(0, 50)}
