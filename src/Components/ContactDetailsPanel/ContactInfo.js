@@ -225,7 +225,7 @@ const Wrapper = styled.div`
 
     .icon {
       font-weight: 600;
-      vertical-align: middle;
+      vertical-align: text-top;
 
       &.orange {
         color: ${styleVariables.accentColorOrange};
