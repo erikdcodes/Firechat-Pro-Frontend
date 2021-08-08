@@ -34,7 +34,6 @@ const ConversationsList = () => {
   };
 
   useEffect(() => {
-    console.log("selected Contact: ", selectedContact?._id);
     loadData(activeLink);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedContact, activeLink]);
