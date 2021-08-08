@@ -34,8 +34,8 @@ const ConversationsList = () => {
   };
 
   useEffect(() => {
+    console.log("selected Contact: ", selectedContact?._id);
     loadData(activeLink);
-    console.log(selectedContact?._id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedContact, activeLink]);
 
@@ -49,16 +49,15 @@ const ConversationsList = () => {
       }
 
       if (contact._id === selectedContact?._id) {
-        const newContact = contact;
-        setSelectedContact(() => newContact);
-      } else return;
+        setSelectedContact({ ...contact });
+      }
     });
 
     return () => {
       socket.removeAllListeners();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [selectedContact]);
 
   if (isLoading)
     return (

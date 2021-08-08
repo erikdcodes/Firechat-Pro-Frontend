@@ -169,19 +169,19 @@ const ContactInfo = () => {
       <div className="contact-info">
         <p>
           <span className=" icon pink">
-            <FaPhoneAlt size={19} />{" "}
+            <FaPhoneAlt size={15} />{" "}
           </span>
           {formatPhoneNumber(selectedContact?.contactPhone)}
         </p>
         <p>
           <span className=" icon orange">
-            <FaEnvelope size={19} />{" "}
+            <FaEnvelope size={15} />{" "}
           </span>{" "}
           {selectedContact?.email}
         </p>
         <p>
           <span className=" icon green">
-            <FaStreetView size={19} />{" "}
+            <FaStreetView size={15} />{" "}
           </span>{" "}
           {selectedContact?.address}
         </p>

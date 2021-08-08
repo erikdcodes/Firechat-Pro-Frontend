@@ -18,7 +18,7 @@ const MessagesList = () => {
 
   return (
     <Wrapper className="hide-scrollbar">
-      <div>
+      <div key={selectedContact}>
         {selectedContact.messages?.map((message) => (
           <Message key={message._id} message={message} />
         ))}

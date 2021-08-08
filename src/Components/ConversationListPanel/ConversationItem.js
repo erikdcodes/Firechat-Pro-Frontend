@@ -43,17 +43,18 @@ const ConversationItem = (props) => {
   };
 
   const handleClick = async () => {
+    const newContact = { ...props.contact };
     if (hasUnreadMessage) {
       await markAsRead(_id);
-      setSelectedContact(props.contact);
+      setSelectedContact(newContact);
     }
     if (props.contact?._id === selectedContact?._id) return;
-    setSelectedContact(props.contact);
+    setSelectedContact(newContact);
     return;
   };
 
   return (
-    <Wrapper onClick={handleClick}>
+    <Wrapper key={_id} onClick={handleClick}>
       <div
         className={
           selectedContact?._id === _id ? "selected container" : "container"
