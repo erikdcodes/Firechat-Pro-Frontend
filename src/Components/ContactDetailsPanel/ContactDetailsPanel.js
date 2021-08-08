@@ -3,7 +3,7 @@ import { useRecoilValue } from "recoil";
 import { selectedContactState } from "../../Store/UIState";
 import ContactInfo from "./ContactInfo";
 import Notes from "./Notes";
-import ContactInfoIcons from "./ContactInfoIcons";
+import ContactArchiveIcons from "./ContactArchiveIcons";
 
 const ContactDetails = () => {
   const selectedContact = useRecoilValue(selectedContactState);
@@ -12,7 +12,7 @@ const ContactDetails = () => {
 
   return (
     <Wrapper>
-      <ContactInfoIcons />
+      <ContactArchiveIcons />
       <ContactInfo />
       <Notes />
     </Wrapper>
