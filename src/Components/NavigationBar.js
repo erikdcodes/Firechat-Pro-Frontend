@@ -3,6 +3,7 @@ import { styleVariables } from "../GlobalStyles/StyleVariables.js";
 import { NavLink } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { loggedInState, selectedContactState } from "../Store/UIState";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const NavigationBar = () => {
   const loggedIn = useRecoilValue(loggedInState);
@@ -10,10 +11,7 @@ const NavigationBar = () => {
   const resetSelectedContact = () => {
     setSelectedContactState(null);
   };
-
-  const handleSignout = async () => {
-    console.log("sign out function");
-  };
+  const { loginWithRedirect, logout } = useAuth0();
 
   if (!loggedIn)
     return (
@@ -36,7 +34,12 @@ const NavigationBar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/login" activeClassName="selected" exact>
+              <NavLink
+                to="/login"
+                activeClassName="selected"
+                onClick={() => loginWithRedirect()}
+                exact
+              >
                 Login
               </NavLink>
             </li>
@@ -73,19 +76,11 @@ const NavigationBar = () => {
                 Actions
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink
-                to="/contacts"
-                activeClassName="selected"
-                onClick={resetSelectedContact}
-              >
-                Contacts
-              </NavLink>
-            </li>
+
             <li className="nav-item">
               <NavLink
                 to="/logout"
-                onClick={handleSignout}
+                onClick={() => logout()}
                 activeClassName="selected"
               >
                 Log Out

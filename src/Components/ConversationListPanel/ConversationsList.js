@@ -67,7 +67,7 @@ const ConversationsList = () => {
       </Wrapper>
     );
 
-  if (!contacts || contacts?.length === 0)
+  if (!contacts || !contacts?.length)
     return (
       <Wrapper>
         <div className="loading">
