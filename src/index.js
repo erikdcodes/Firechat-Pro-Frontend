@@ -10,8 +10,8 @@ ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
       <Auth0Provider
-        domain="firechat.us.auth0.com"
-        clientId="rWpqUmcuyi5SLqYwt9reMWfJYZc5wTCn"
+        domain={process.env.REACT_APP_AUTH0_DOMAIN}
+        clientId={process.env.REACT_APP_AUTH0_CLIENTID}
         redirectUri={window.location.origin}
       >
         <GlobalStyles />

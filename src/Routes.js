@@ -17,7 +17,7 @@ const ProtectedRoute = ({ redirectPath, children, ...rest }) => {
     <Route
       {...rest}
       render={() => {
-        return isLoggedIn ? children : <Redirect to={redirectPath} />;
+        return isLoggedIn === true ? children : <Redirect to={redirectPath} />;
       }}
     />
   );
