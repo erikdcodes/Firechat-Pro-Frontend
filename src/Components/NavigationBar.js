@@ -79,9 +79,9 @@ const NavigationBar = () => {
 
             <li className="nav-item">
               <NavLink
-                to="/logout"
+                to="/"
                 onClick={() => logout()}
-                activeClassName="selected"
+                // activeClassName="selected"
               >
                 Log Out
               </NavLink>
@@ -90,7 +90,7 @@ const NavigationBar = () => {
         </nav>
         <div className="profile-link-container">
           <NavLink
-            to="/profile "
+            to="/profile"
             activeClassName="selected"
             onClick={resetSelectedContact}
           >

@@ -3,13 +3,13 @@ import { useEffect } from "react";
 import AppLayout from "../Layouts/AppLayout";
 
 const Profile = () => {
-  const { user } = useAuth0();
+  const { user, user_id } = useAuth0();
   useEffect(() => {
     console.log(user);
   }, [user]);
   return (
     <AppLayout>
-      <div>{user?.name}</div>
+      <div>{JSON.stringify(user, null, 2)}</div>
     </AppLayout>
   );
 };
