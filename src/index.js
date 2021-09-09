@@ -4,19 +4,18 @@ import "./GlobalStyles/index.css";
 import App from "./App";
 import { RecoilRoot } from "recoil";
 import { GlobalStyles } from "./GlobalStyles/GlobalStyles";
-import { Auth0Provider } from "@auth0/auth0-react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Auth0ProviderWithHistory from "./auth0/Auth0ProviderWithHistory";
 
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
-      <Auth0Provider
-        domain={process.env.REACT_APP_AUTH0_DOMAIN}
-        clientId={process.env.REACT_APP_AUTH0_CLIENTID}
-        redirectUri={window.location.origin}
-      >
-        <GlobalStyles />
-        <App />
-      </Auth0Provider>
+      <Router>
+        <Auth0ProviderWithHistory>
+          <GlobalStyles />
+          <App />
+        </Auth0ProviderWithHistory>
+      </Router>
     </RecoilRoot>
   </React.StrictMode>,
   document.getElementById("root")
