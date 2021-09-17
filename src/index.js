@@ -5,16 +5,13 @@ import App from "./App";
 import { RecoilRoot } from "recoil";
 import { GlobalStyles } from "./GlobalStyles/GlobalStyles";
 import { BrowserRouter } from "react-router-dom";
-import Auth0ProviderWithHistory from "./auth0/Auth0ProviderWithHistory";
 
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
       <BrowserRouter>
-        <Auth0ProviderWithHistory>
-          <GlobalStyles />
-          <App />
-        </Auth0ProviderWithHistory>
+        <GlobalStyles />
+        <App />
       </BrowserRouter>
     </RecoilRoot>
   </React.StrictMode>,
