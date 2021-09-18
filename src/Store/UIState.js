@@ -20,6 +20,16 @@ export const userDataState = atom({
   }, //object
 });
 
+export const currentUserState = atom({
+  key: "currentUserState",
+  default: null,
+});
+
+export const isAuthLoadingState = atom({
+  key: "isAuthLoadingState",
+  default: true,
+});
+
 export const isAddContactOpenState = atom({
   key: "isAddContactOpenState",
   default: false,

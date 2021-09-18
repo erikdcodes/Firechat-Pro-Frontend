@@ -1,25 +1,15 @@
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import AppLayout from "./Layouts/AppLayout";
-import { useRecoilValue } from "recoil";
-import { loggedInState } from "./Store/UIState";
 import Inbox from "./Pages/Inbox";
 import Actions from "./Pages/Actions";
 import Login from "./Pages/Login";
 import Profile from "./Pages/Profile";
-
-const ProtectedRoute = ({ redirectPath, children, ...rest }) => {
-  const isLoggedIn = useRecoilValue(loggedInState);
-  return (
-    <Route
-      {...rest}
-      render={() => {
-        return isLoggedIn === true ? children : <Redirect to={redirectPath} />;
-      }}
-    />
-  );
-};
+import ProtectedRoute from "./Components/ProtectedRoute";
+import useCurrentUser from "./Hooks/useCurrentUser";
 
 const Routes = () => {
+  const [currentUser, setCurrentUser] = useCurrentUser();
+
   return (
     <Switch>
       <Route path="/" exact>
@@ -39,7 +29,11 @@ const Routes = () => {
       <Route path="/profile" exact>
         <Profile />
       </Route>
-      <ProtectedRoute path="/secret" redirectPath="/login">
+      <ProtectedRoute
+        currentUser={currentUser}
+        path="/secret"
+        redirectPath="/login"
+      >
         <h1>Protected Route</h1>
       </ProtectedRoute>
       <Route path="*">

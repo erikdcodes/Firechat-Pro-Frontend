@@ -1,15 +1,23 @@
 import { useEffect } from "react";
-import { loggedInState } from "./Store/UIState";
-import { useSetRecoilState } from "recoil";
-import { useAuth0 } from "@auth0/auth0-react";
+import { getAuth } from "@firebase/auth";
 import Routes from "./Routes";
+import useCurrentUser from "./Hooks/useCurrentUser";
+import useIsAuthLoading from "./Hooks/useIsAuthLoading";
 
 const App = () => {
-  const setLoggedIn = useSetRecoilState(loggedInState);
-  const { isAuthenticated } = useAuth0();
+  const auth = getAuth();
+  const [currentUser, setCurrentUser] = useCurrentUser();
+  const [isAuthLoading, setIsAuthLoading] = useIsAuthLoading();
+
   useEffect(() => {
-    setLoggedIn(isAuthenticated);
-  }, [setLoggedIn, isAuthenticated]);
+    const unsub = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user?.toJSON());
+      setIsAuthLoading(false);
+    });
+
+    return unsub;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return <Routes />;
 };
