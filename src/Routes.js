@@ -8,7 +8,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import useCurrentUser from "./Hooks/useCurrentUser";
 
 const Routes = () => {
-  const [currentUser, setCurrentUser] = useCurrentUser();
+  const [currentUser] = useCurrentUser();
 
   return (
     <Switch>
@@ -20,15 +20,15 @@ const Routes = () => {
       <Route path="/login" exact>
         <Login />
       </Route>
-      <Route path="/inbox" exact>
+      <ProtectedRoute currentUser={currentUser} path="/inbox" exact>
         <Inbox />
-      </Route>
-      <Route path="/actions" exact>
+      </ProtectedRoute>
+      <ProtectedRoute currentUser={currentUser} path="/actions" exact>
         <Actions />
-      </Route>
-      <Route path="/profile" exact>
+      </ProtectedRoute>
+      <ProtectedRoute currentUser={currentUser} path="/profile" exact>
         <Profile />
-      </Route>
+      </ProtectedRoute>
       <ProtectedRoute
         currentUser={currentUser}
         path="/secret"

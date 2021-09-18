@@ -6,13 +6,15 @@ import useIsAuthLoading from "./Hooks/useIsAuthLoading";
 
 const App = () => {
   const auth = getAuth();
-  const [currentUser, setCurrentUser] = useCurrentUser();
-  const [isAuthLoading, setIsAuthLoading] = useIsAuthLoading();
+  const [, setCurrentUser] = useCurrentUser();
+  const [, setIsAuthLoading] = useIsAuthLoading();
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user?.toJSON());
-      setIsAuthLoading(false);
+      if (user) {
+        setCurrentUser(user?.toJSON());
+        setIsAuthLoading(false);
+      }
     });
 
     return unsub;

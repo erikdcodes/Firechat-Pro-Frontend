@@ -1,105 +1,94 @@
 import styled from "styled-components";
 import { styleVariables } from "../GlobalStyles/StyleVariables.js";
 import { NavLink } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { loggedInState, selectedContactState } from "../Store/UIState";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useSetRecoilState } from "recoil";
+import { selectedContactState } from "../Store/UIState";
+import useCurrentUser from "../Hooks/useCurrentUser.js";
 
 const NavigationBar = () => {
-  const loggedIn = useRecoilValue(loggedInState);
   const setSelectedContactState = useSetRecoilState(selectedContactState);
   const resetSelectedContact = () => {
     setSelectedContactState(null);
   };
-  const { loginWithRedirect, logout } = useAuth0();
 
-  if (!loggedIn)
-    return (
-      <Wrapper>
-        <div className="logo-container">
-          <a href="/">
-            <h1 className="logo">🔥 Fire Chat</h1>
-          </a>
-        </div>
-        <nav className="nav-menu">
-          <ul>
+  const [currentUser] = useCurrentUser();
+
+  return (
+    <Wrapper>
+      <div className="logo-container">
+        <a href="/">
+          <h1 className="logo">🔥 Fire Chat</h1>
+        </a>
+      </div>
+      <nav className="nav-menu">
+        <ul>
+          <li className="nav-item">
+            <NavLink
+              to="/"
+              activeClassName="selected"
+              onClick={resetSelectedContact}
+              exact
+            >
+              Home
+            </NavLink>
+          </li>
+          {currentUser ? (
+            <>
+              <li className="nav-item">
+                <NavLink
+                  to="/inbox"
+                  activeClassName="selected"
+                  onClick={resetSelectedContact}
+                >
+                  Inbox
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/actions"
+                  activeClassName="selected"
+                  onClick={resetSelectedContact}
+                >
+                  Actions
+                </NavLink>
+              </li>
+
+              <li className="nav-item">
+                <NavLink
+                  to="/"
+                  // activeClassName="selected"
+                >
+                  Log Out
+                </NavLink>
+              </li>
+            </>
+          ) : (
             <li className="nav-item">
-              <NavLink
-                to="/"
-                activeClassName="selected"
-                onClick={resetSelectedContact}
-                exact
-              >
-                Home
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                to="/login"
-                activeClassName="selected"
-                onClick={() => loginWithRedirect()}
-                exact
-              >
+              <NavLink to="/login" activeClassName="selected" exact>
                 Login
               </NavLink>
             </li>
-          </ul>
-        </nav>
-        <div className="profile-link-container"></div>
-      </Wrapper>
-    );
-  else
-    return (
-      <Wrapper>
-        <div className="logo-container">
-          <a href="/">
-            <h1 className="logo">🔥 Fire Chat</h1>
-          </a>
-        </div>
-        <nav className="nav-menu">
-          <ul>
-            <li className="nav-item">
-              <NavLink
-                to="/inbox"
-                activeClassName="selected"
-                onClick={resetSelectedContact}
-              >
-                Inbox
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                to="/actions"
-                activeClassName="selected"
-                onClick={resetSelectedContact}
-              >
-                Actions
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink
-                to="/"
-                onClick={() => logout()}
-                // activeClassName="selected"
-              >
-                Log Out
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-        <div className="profile-link-container">
-          <NavLink
-            to="/profile"
-            activeClassName="selected"
-            onClick={resetSelectedContact}
-          >
-            Profile
-          </NavLink>
-          <span> (909) 541-1134</span>
-        </div>
-      </Wrapper>
-    );
+          )}
+        </ul>
+      </nav>
+      <div className="profile-link-container">
+        {currentUser ? (
+          <>
+            <NavLink
+              to="/profile"
+              activeClassName="selected"
+              onClick={resetSelectedContact}
+            >
+              Profile
+            </NavLink>
+            <span> (909) 541-1134</span>
+          </>
+        ) : (
+          ""
+        )}
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
