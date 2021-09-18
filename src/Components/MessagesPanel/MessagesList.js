@@ -9,7 +9,7 @@ const MessagesList = () => {
   const listEnd = useRef(null);
 
   useEffect(() => {
-    listEnd.current.scrollIntoView({
+    listEnd.current?.scrollIntoView({
       block: "nearest",
     });
   }, [selectedContact]);
