@@ -6,10 +6,11 @@ import SearchContacts from "../Components/SearchContacts";
 import ContactDetailsPanel from "../Components/ContactDetailsPanel/ContactDetailsPanel";
 import MessagesPanel from "../Components/MessagesPanel/MessagesPanel";
 import AddContactModal from "../Components/AddContactModal";
+import React from "react";
 
 const Inbox = () => {
   return (
-    <>
+    <React.Fragment>
       <AddContactModal />
       <AppLayout>
         <Wrapper>
@@ -25,7 +26,7 @@ const Inbox = () => {
           </div>
         </Wrapper>
       </AppLayout>
-    </>
+    </React.Fragment>
   );
 };
 
