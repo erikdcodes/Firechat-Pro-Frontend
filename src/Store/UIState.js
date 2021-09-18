@@ -22,7 +22,7 @@ export const userDataState = atom({
 
 export const currentUserState = atom({
   key: "currentUserState",
-  default: true,
+  default: false,
 });
 
 export const isAuthLoadingState = atom({

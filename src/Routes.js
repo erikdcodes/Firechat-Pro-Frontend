@@ -6,6 +6,7 @@ import Login from "./Pages/Login";
 import Profile from "./Pages/Profile";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import useCurrentUser from "./Hooks/useCurrentUser";
+import Register from "./Pages/Register";
 
 const Routes = () => {
   const [currentUser] = useCurrentUser();
@@ -19,6 +20,9 @@ const Routes = () => {
       </Route>
       <Route path="/login" exact>
         <Login />
+      </Route>
+      <Route path="/register" exact>
+        <Register />
       </Route>
       <ProtectedRoute currentUser={currentUser} path="/inbox" exact>
         <Inbox />

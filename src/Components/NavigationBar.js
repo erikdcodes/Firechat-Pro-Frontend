@@ -4,14 +4,20 @@ import { NavLink } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { selectedContactState } from "../Store/UIState";
 import useCurrentUser from "../Hooks/useCurrentUser.js";
+import { getAuth } from "@firebase/auth";
 
 const NavigationBar = () => {
+  const auth = getAuth();
   const setSelectedContactState = useSetRecoilState(selectedContactState);
   const resetSelectedContact = () => {
     setSelectedContactState(null);
   };
+  const [currentUser, setCurrentUser] = useCurrentUser();
 
-  const [currentUser] = useCurrentUser();
+  const signOut = () => {
+    auth.signOut();
+    setCurrentUser(null);
+  };
 
   return (
     <Wrapper>
@@ -55,7 +61,8 @@ const NavigationBar = () => {
 
               <li className="nav-item">
                 <NavLink
-                  to="/"
+                  to="/login"
+                  onClick={signOut}
                   // activeClassName="selected"
                 >
                   Log Out
