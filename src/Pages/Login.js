@@ -12,15 +12,16 @@ const Login = () => {
   const auth = getAuth();
   const history = useHistory();
 
-  const loginWithFirebase = async (e) => {
+  const loginWithFirebase = (e) => {
     e.preventDefault();
-    await signInWithEmailAndPassword(auth, email, password).catch((err) =>
-      setError(err)
-    );
-    setEmail("");
-    setPassword("");
-    setError("");
-    history.push("/inbox");
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        setEmail("");
+        setPassword("");
+        setError("");
+        history.push("/inbox");
+      })
+      .catch((err) => setError(err));
   };
 
   return (

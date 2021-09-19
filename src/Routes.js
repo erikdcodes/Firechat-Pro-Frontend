@@ -7,6 +7,7 @@ import Profile from "./Pages/Profile";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import useCurrentUser from "./Hooks/useCurrentUser";
 import Register from "./Pages/Register";
+import Home from "./Pages/Home";
 
 const Routes = () => {
   const [currentUser] = useCurrentUser();
@@ -14,9 +15,7 @@ const Routes = () => {
   return (
     <Switch>
       <Route path="/" exact>
-        <AppLayout>
-          <h1>Home Page</h1>
-        </AppLayout>
+        <Home />
       </Route>
       <Route path="/login" exact>
         <Login />
