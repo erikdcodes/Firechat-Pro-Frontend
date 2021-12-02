@@ -14,7 +14,7 @@ const Home = () => {
         <header>
           <div className="left">
             <h1 className="title">
-              A Texting Centered CRM That Does Other Things Too
+              A Texting Centered CRM That Does Other Things Good Too
             </h1>
             <p className="sub-title">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus

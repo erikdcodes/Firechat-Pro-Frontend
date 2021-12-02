@@ -23,21 +23,11 @@ const NavigationBar = () => {
     <Wrapper>
       <div className="logo-container">
         <a href="/">
-          <h1 className="logo">🔥 Fire Chat</h1>
+          <h1 className="logo">🔥 Yext SMS</h1>
         </a>
       </div>
       <nav className="nav-menu">
         <ul>
-          <li className="nav-item">
-            <NavLink
-              to="/"
-              activeClassName="selected"
-              onClick={resetSelectedContact}
-              exact
-            >
-              Home
-            </NavLink>
-          </li>
           {currentUser ? (
             <>
               <li className="nav-item">
@@ -70,11 +60,23 @@ const NavigationBar = () => {
               </li>
             </>
           ) : (
-            <li className="nav-item">
-              <NavLink to="/login" activeClassName="selected" exact>
-                Login
-              </NavLink>
-            </li>
+            <>
+              <li className="nav-item">
+                <NavLink
+                  to="/"
+                  activeClassName="selected"
+                  onClick={resetSelectedContact}
+                  exact
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/login" activeClassName="selected" exact>
+                  Login
+                </NavLink>
+              </li>
+            </>
           )}
         </ul>
       </nav>
