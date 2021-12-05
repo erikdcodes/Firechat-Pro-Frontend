@@ -61,6 +61,20 @@ const ConversationsList = () => {
   if (isLoading)
     return (
       <Wrapper>
+        <div className="header">
+          <button
+            onClick={() => setActiveLink("ACTIVE")}
+            className={activeLink === "ACTIVE" ? "link selected" : "link"}
+          >
+            Active
+          </button>
+          <button
+            onClick={() => setActiveLink("ALL")}
+            className={activeLink === "ALL" ? "link selected" : "link"}
+          >
+            All
+          </button>
+        </div>
         <div className="loading">
           <p>Retrieving contacts...</p>
         </div>
@@ -70,8 +84,22 @@ const ConversationsList = () => {
   if (!contacts || !contacts?.length)
     return (
       <Wrapper>
+        <div className="header">
+          <button
+            onClick={() => setActiveLink("ACTIVE")}
+            className={activeLink === "ACTIVE" ? "link selected" : "link"}
+          >
+            Active
+          </button>
+          <button
+            onClick={() => setActiveLink("ALL")}
+            className={activeLink === "ALL" ? "link selected" : "link"}
+          >
+            All
+          </button>
+        </div>
         <div className="loading">
-          <p>add a contact</p>
+          <p>no conversations</p>
 
           <AddContactButton />
         </div>
