@@ -90,7 +90,7 @@ const NavigationBar = () => {
             >
               Profile
             </NavLink>
-            <span> (909) 541-1134</span>
+            <span> (951) 227-7675</span>
           </>
         ) : (
           ""

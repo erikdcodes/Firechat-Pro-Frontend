@@ -14,6 +14,7 @@ const App = () => {
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((user) => {
       if (user) {
+        console.log(user);
         setCurrentUser(user?.toJSON());
         setIsAuthLoading(false);
         history.push("/inbox");
