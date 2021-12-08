@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import AppLayout from "../Layouts/AppLayout";
 
 const Profile = () => {
-  const { user, user_id } = useAuth0();
+  const { user } = useAuth0();
   useEffect(() => {
     console.log(user);
   }, [user]);
