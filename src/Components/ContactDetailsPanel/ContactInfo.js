@@ -32,13 +32,13 @@ const ContactInfo = () => {
 
   const handleEditContact = async (e) => {
     e.preventDefault();
-    const { firstName, lastName, email, address, backgroundInfo } =
+    const { firstName, lastName, email, list, backgroundInfo } =
       formRef.current;
     const updated = await editContact(selectedContact._id, {
       firstName: firstName.value,
       lastName: lastName.value,
       email: email.value,
-      address: address.value,
+      list: list.value,
       backgroundInfo: backgroundInfo.value,
     });
     setSelectedContact(updated);
@@ -110,13 +110,13 @@ const ContactInfo = () => {
             </div>
 
             <div className="form-group">
-              <span className=" icon green">A:</span>
+              <span className=" icon green">L:</span>
               <div className="input-wrapper">
                 <input
                   type="text"
-                  placeholder="add address"
-                  name="address"
-                  defaultValue={selectedContact.address}
+                  placeholder="add list"
+                  name="list"
+                  defaultValue={selectedContact.list}
                 />
               </div>
             </div>
@@ -183,7 +183,7 @@ const ContactInfo = () => {
           <span className=" icon green">
             <FaStreetView size={15} />{" "}
           </span>{" "}
-          {selectedContact?.address}
+          {selectedContact?.list}
         </p>
       </div>
     </Wrapper>
