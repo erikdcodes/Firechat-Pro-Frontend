@@ -15,7 +15,7 @@ const Inbox = () => {
       <AppLayout>
         <Wrapper>
           <div className="left">
-            <SearchContacts />
+            {/* <SearchContacts /> */}
             <ConversationsList />
           </div>
           <div className="center">
