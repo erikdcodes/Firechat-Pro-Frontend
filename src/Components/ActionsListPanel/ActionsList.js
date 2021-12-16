@@ -9,12 +9,14 @@ import ActionItem from "./ActionItem.js";
 // component starts
 const ActionsList = () => {
   const { userAuth0ID } = useRecoilValue(userDataState);
+  const [isLoading, setIsLoading] = useState(true);
   const [contacts, setContacts] = useState([]);
   const selectedContact = useRecoilValue(selectedContactState);
 
   const getData = async () => {
     const contactsData = await getAllNextActions(userAuth0ID);
     setContacts(contactsData);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -27,11 +29,15 @@ const ActionsList = () => {
       <div className="header">
         <h4>Upcoming Actions</h4>
       </div>
-      <div className="list-wrapper">
-        {contacts.map((item, i) => (
-          <ActionItem contact={item} key={i + item._id} />
-        ))}
-      </div>
+      {isLoading ? (
+        <div className="loading">loading next actions...</div>
+      ) : (
+        <div className="list-wrapper">
+          {contacts.map((item, i) => (
+            <ActionItem contact={item} key={i + item._id} />
+          ))}
+        </div>
+      )}
     </Wrapper>
   );
 };
@@ -46,6 +52,9 @@ const Wrapper = styled.div`
     height: 100%;
     padding-bottom: 200px;
     overflow-y: scroll;
+  }
+  .loading {
+    padding: 20px;
   }
 `;
 
