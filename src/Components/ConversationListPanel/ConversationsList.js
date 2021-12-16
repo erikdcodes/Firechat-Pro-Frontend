@@ -65,9 +65,9 @@ const ConversationsList = () => {
           {contacts?.map((item, i) => (
             <ConversationItem contact={item} key={i + item._id} />
           ))}
-          <AddContactButton />
         </div>
       )}
+      <AddContactButton />
     </Wrapper>
   );
 };
