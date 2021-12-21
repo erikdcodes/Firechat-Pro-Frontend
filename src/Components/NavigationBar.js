@@ -19,7 +19,7 @@ const NavigationBar = () => {
   const [currentUser, setCurrentUser] = useCurrentUser();
   const [showUnreadNotification, setShowUnreadNotification] =
     useShowUnreadNotification();
-  const { userTwilioPhone } = useRecoilValue(userDataState);
+  const { userAuth0ID } = useRecoilValue(userDataState);
 
   const signOut = () => {
     auth.signOut();
@@ -28,7 +28,7 @@ const NavigationBar = () => {
 
   useEffect(() => {
     socket.on("smsReceived", (contact) => {
-      if (contact.userTwilioPhone === userTwilioPhone) {
+      if (contact.userAuth0ID === userAuth0ID) {
         // show notification
         setShowUnreadNotification(true);
       }

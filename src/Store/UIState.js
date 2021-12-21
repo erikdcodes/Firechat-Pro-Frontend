@@ -37,5 +37,5 @@ export const isAddContactOpenState = atom({
 
 export const showUnreadNotificationState = atom({
   key: "showUnreadNotificationState",
-  default: true,
+  default: false,
 });
