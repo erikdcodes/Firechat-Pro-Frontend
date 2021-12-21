@@ -5,6 +5,8 @@ import ConversationItem from "../ConversationListPanel/ConversationItem";
 import { getActiveContactsByUser } from "../../Data/Axios.js";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userDataState, selectedContactState } from "../../Store/UIState";
+import useShowUnreadNotification from "../../Hooks/useShowUnreadNotification.js";
+
 import io from "socket.io-client";
 import AddContactButton from "../AddContactButton";
 const URL = process.env.REACT_APP_SERVER_URL;
@@ -15,6 +17,9 @@ const ConversationsList = () => {
   const { userAuth0ID, userTwilioPhone } = useRecoilValue(userDataState);
   const [selectedContact, setSelectedContact] =
     useRecoilState(selectedContactState);
+
+  const [showUnreadNotification, setShowUnreadNotification] =
+    useShowUnreadNotification();
 
   const loadData = async () => {
     const contactsData = await getActiveContactsByUser(userAuth0ID);
@@ -34,6 +39,7 @@ const ConversationsList = () => {
     socket.on("smsReceived", (contact) => {
       if (contact.userTwilioPhone === userTwilioPhone) {
         loadData();
+        setShowUnreadNotification(true);
       }
 
       if (contact._id === selectedContact?._id) {

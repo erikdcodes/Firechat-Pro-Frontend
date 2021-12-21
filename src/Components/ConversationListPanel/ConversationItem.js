@@ -3,10 +3,10 @@ import dayjs from "dayjs";
 import calendar from "dayjs/plugin/calendar";
 import ReactTooltip from "react-tooltip";
 import { styleVariables } from "../../GlobalStyles/StyleVariables";
-import { useRecoilState } from "recoil";
-import { selectedContactState } from "../../Store/UIState";
 import { formatPhoneNumber } from "react-phone-number-input/input";
 import { markAsRead } from "../../Data/Axios";
+import useSelectedContact from "../../Hooks/useSelectedContact.js";
+import useShowUnreadNotification from "../../Hooks/useShowUnreadNotification.js";
 
 dayjs.extend(calendar);
 
@@ -32,8 +32,8 @@ const ConversationItem = (props) => {
   const lastMessageDateTooltip = dayjs(lastMessage?.updatedAt).format(
     "MM/DD/YYYY h:mm A"
   );
-  const [selectedContact, setSelectedContact] =
-    useRecoilState(selectedContactState);
+  const [selectedContact, setSelectedContact] = useSelectedContact();
+  const [, setShowUnreadNotification] = useShowUnreadNotification();
 
   const displayName = () => {
     if (firstName && lastName) return `${firstName} ${lastName}`;
@@ -50,6 +50,9 @@ const ConversationItem = (props) => {
     }
     if (props.contact?._id === selectedContact?._id) return;
     setSelectedContact(newContact);
+
+    setShowUnreadNotification(false);
+
     return;
   };
 

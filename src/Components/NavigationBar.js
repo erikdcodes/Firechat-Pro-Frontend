@@ -4,7 +4,9 @@ import { NavLink } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { selectedContactState } from "../Store/UIState";
 import useCurrentUser from "../Hooks/useCurrentUser.js";
+import useShowUnreadNotification from "../Hooks/useShowUnreadNotification";
 import { getAuth } from "@firebase/auth";
+import { BsFillChatSquareDotsFill } from "react-icons/bs";
 
 const NavigationBar = () => {
   const auth = getAuth();
@@ -13,6 +15,8 @@ const NavigationBar = () => {
     setSelectedContactState(null);
   };
   const [currentUser, setCurrentUser] = useCurrentUser();
+  const [showUnreadNotification, setShowUnreadNotification] =
+    useShowUnreadNotification();
 
   const signOut = () => {
     auth.signOut();
@@ -31,10 +35,20 @@ const NavigationBar = () => {
           {currentUser ? (
             <>
               <li className="nav-item">
+                {showUnreadNotification ? (
+                  <span className="icon orange">
+                    <BsFillChatSquareDotsFill />
+                  </span>
+                ) : (
+                  ""
+                )}
                 <NavLink
                   to="/inbox"
                   activeClassName="selected"
-                  onClick={resetSelectedContact}
+                  onClick={() => {
+                    resetSelectedContact();
+                    setShowUnreadNotification(false);
+                  }}
                 >
                   Inbox
                 </NavLink>
@@ -124,6 +138,7 @@ const Wrapper = styled.div`
       list-style: none;
       display: flex;
       padding: 0;
+      position: relative;
     }
 
     & li {
@@ -144,6 +159,20 @@ const Wrapper = styled.div`
         color: ${styleVariables.accentTextColor};
         border-bottom: 2px solid ${styleVariables.accentTextColor};
       }
+    }
+  }
+  .icon {
+    position: absolute;
+    left: -20px;
+    top: 5px;
+    &.orange {
+      color: ${styleVariables.accentColorOrange};
+    }
+    &.pink {
+      color: ${styleVariables.accentColorPink};
+    }
+    &.green {
+      color: ${styleVariables.accentColorGreen};
     }
   }
 `;
