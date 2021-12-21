@@ -1,12 +1,14 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import { styleVariables } from "../GlobalStyles/StyleVariables.js";
 import { NavLink } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { selectedContactState } from "../Store/UIState";
+import { useSetRecoilState, useRecoilValue } from "recoil";
+import { selectedContactState, userDataState } from "../Store/UIState";
 import useCurrentUser from "../Hooks/useCurrentUser.js";
 import useShowUnreadNotification from "../Hooks/useShowUnreadNotification";
 import { getAuth } from "@firebase/auth";
 import { BsFillChatSquareDotsFill } from "react-icons/bs";
+import socket from "../Data/socketConfig.js";
 
 const NavigationBar = () => {
   const auth = getAuth();
@@ -17,11 +19,26 @@ const NavigationBar = () => {
   const [currentUser, setCurrentUser] = useCurrentUser();
   const [showUnreadNotification, setShowUnreadNotification] =
     useShowUnreadNotification();
+  const { userTwilioPhone } = useRecoilValue(userDataState);
 
   const signOut = () => {
     auth.signOut();
     setCurrentUser(null);
   };
+
+  useEffect(() => {
+    socket.on("smsReceived", (contact) => {
+      if (contact.userTwilioPhone === userTwilioPhone) {
+        // show notification
+        setShowUnreadNotification(true);
+      }
+    });
+
+    return () => {
+      socket.removeAllListeners();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Wrapper>
