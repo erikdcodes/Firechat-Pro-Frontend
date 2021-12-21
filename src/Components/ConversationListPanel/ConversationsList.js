@@ -18,8 +18,7 @@ const ConversationsList = () => {
   const [selectedContact, setSelectedContact] =
     useRecoilState(selectedContactState);
 
-  const [showUnreadNotification, setShowUnreadNotification] =
-    useShowUnreadNotification();
+  const [, setShowUnreadNotification] = useShowUnreadNotification();
 
   const loadData = async () => {
     const contactsData = await getActiveContactsByUser(userAuth0ID);
