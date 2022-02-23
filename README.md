@@ -1,1 +1,1 @@
-renamed to V3
+Firechat Pro
