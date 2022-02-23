@@ -44,7 +44,7 @@ const NavigationBar = () => {
     <Wrapper>
       <div className="logo-container">
         <a href="/">
-          <h1 className="logo">🔥 Yext SMS</h1>
+          <h1 className="logo">🔥 Firechat Pro</h1>
         </a>
       </div>
       <nav className="nav-menu">
