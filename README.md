@@ -24,6 +24,8 @@ Contact management focused only on the what needs to be done next. Completed the
 
 ![action view example](action-view-example.gif)
 
+---
+
 ### Built With
 
 #### Frontend
