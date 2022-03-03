@@ -8,24 +8,6 @@
 - Save client contact data and notes
 - Add "Next Action" todos for each client
 
-## Examples:
-
-### Sending a message and adding a followup action
-
-Texting has proven to generate more engagement versus any other means of communication. Sending SMS text messages is at the very center of the Firechat Pro platform.
-
-![sending sms example](sms-example.gif)
-
----
-
-### Actions view of all upcoming actions to complete
-
-Contact management focused only on the what needs to be done next. Completed the sales action? Set the next one.
-
-![action view example](action-view-example.gif)
-
----
-
 ### Built With
 
 #### Frontend
@@ -42,3 +24,19 @@ Contact management focused only on the what needs to be done next. Completed the
 - Express JS - RESTful API Framework
 - MongoDB - NoSql Database
 - Twilio - SMS Texting API
+
+## Examples:
+
+### Sending a message and adding a followup action
+
+Texting has proven to generate more engagement versus any other means of communication. Sending SMS text messages is at the very center of the Firechat Pro platform.
+
+![sending sms example](sms-example.gif)
+
+---
+
+### Actions view of all upcoming actions to complete
+
+Contact management focused only on the what needs to be done next. Completed the sales action? Set the next one.
+
+![action view example](action-view-example.gif)
