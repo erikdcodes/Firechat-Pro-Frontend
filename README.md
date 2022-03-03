@@ -18,7 +18,17 @@ Contact management focused only on the what needs to be done next. Completed the
 
 ### Built With
 
+#### Frontend
+
 - React - Javascript Framework
 - Styled Components - CSS in Javascript
 - Recoil - Global State Management
 - Firebase - Authentication
+- SocketIO - Websocket
+
+#### Backend
+
+- NodeJS - Server Side Javascript Runtime
+- Express JS - RESTful API Framework
+- MongoDB - NoSql Database
+- Twilio - SMS Texting API
