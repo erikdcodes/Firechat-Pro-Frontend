@@ -6,9 +6,11 @@
 
 ![sending sms example](sms-example.gif)
 
+---
+
 ### Actions view of all upcoming actions to complete
 
-![sending sms example](sms-example.gif)
+![action view example](action-view-example.gif)
 
 ### Built With
 
