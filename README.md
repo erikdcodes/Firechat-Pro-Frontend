@@ -2,6 +2,12 @@
 
 [🔥 Firechat Pro](https://firechat.pro) is a SMS centric platform designed to give sales agents the tools they need to engage and follow up with their clientele.
 
+### Features
+
+- Send and Receive SMS Text Messages via Twilio API
+- Save client contact data and notes
+- Add "Next Action" todos for each client
+
 ### Sending a message and adding a followup action
 
 Texting has proven to generate more engagement versus any other means of communication. Sending SMS text messages is at the very center of the Firechat Pro platform.
