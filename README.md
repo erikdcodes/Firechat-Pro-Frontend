@@ -8,6 +8,8 @@
 - Save client contact data and notes
 - Add "Next Action" todos for each client
 
+## Examples:
+
 ### Sending a message and adding a followup action
 
 Texting has proven to generate more engagement versus any other means of communication. Sending SMS text messages is at the very center of the Firechat Pro platform.
