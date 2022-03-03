@@ -16,7 +16,7 @@
 - Styled Components - CSS in Javascript
 - Recoil - Global State Management
 - Firebase - Authentication
-- SocketIO - Websocket
+- SocketIO - Websockets
 
 #### Backend
 
@@ -24,6 +24,7 @@
 - Express JS - RESTful API Framework
 - MongoDB - NoSql Database
 - Twilio - SMS Texting API
+- SocketIO - Websockets
 
 ## Examples:
 
