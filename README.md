@@ -2,6 +2,12 @@
 
 [🔥 Firechat Pro](https://firechat.pro) is a SMS centric platform designed to give sales agents the tools they need to engage and follow up with their clientele.
 
+### Sending a message and adding a followup action
+
+![sending sms example](sms-example.gif)
+
+### Actions view of all upcoming actions to complete
+
 ![sending sms example](sms-example.gif)
 
 ### Built With
