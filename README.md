@@ -38,6 +38,6 @@ Texting has proven to generate more engagement versus any other means of communi
 
 ### Actions view of all upcoming actions to complete
 
-Contact management focused only on the what needs to be done next. Completed the sales action? Set the next one.
+Contact management focused only on what needs to be done next. Completed the sales action? Set the next one.
 
 ![action view example](action-view-example.gif)
