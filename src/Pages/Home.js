@@ -4,9 +4,9 @@ import { styleVariables } from "../GlobalStyles/StyleVariables.js";
 import { useHistory } from "react-router-dom";
 import useCurrentUser from "../Hooks/useCurrentUser";
 import headerBg from "../Images/bg-pattern-header.svg";
+import Section from "../Components/PageComponents/Section";
 
 const Home = () => {
-  // on homepage-update branch
   const [currentUser] = useCurrentUser();
   const history = useHistory();
   return (
@@ -14,14 +14,10 @@ const Home = () => {
       <Wrapper>
         <header>
           <div className="left">
-            <h1 className="title">
-              A Texting Centered CRM That Does Other Things Good Too
-            </h1>
+            <h1 className="title">The gold is in the follow up </h1>
             <p className="sub-title">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus
-              quia maiores cumque ratione. Placeat inventore id, nostrum
-              officiis nihil aspernatur, suscipit nulla eum asperiores
-              reiciendis impedit voluptates, cumque laborum quo.
+              🔥 Firechat Pro allows you to send and receive text messages while
+              managing client interactions all in one simple to use platform.
             </p>
             {currentUser ? (
               <button onClick={() => history.push("/inbox")} className="blue">
@@ -35,6 +31,7 @@ const Home = () => {
           </div>
           <div className="right"></div>
         </header>
+        <Section />
       </Wrapper>
     </AppLayout>
   );
@@ -51,11 +48,12 @@ const Wrapper = styled.div`
       font-size: 48px;
       line-height: 1.4;
       color: ${styleVariables.accentColorBlue};
+      text-transform: capitalize;
     }
 
     .sub-title {
       margin-top: 15px;
-      font-size: 18px;
+      font-size: 24px;
       line-height: 1.8;
       color: ${styleVariables.primaryTextColor};
     }
@@ -70,6 +68,7 @@ const Wrapper = styled.div`
     button {
       padding: 15px 20px;
       max-width: 400px;
+      font-size: 24px;
     }
   }
 `;
