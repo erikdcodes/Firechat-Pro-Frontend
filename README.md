@@ -1,6 +1,6 @@
 # 🔥 Firechat Pro - Front End Client
 
-[🔥 Firechat Pro](https://firechat.pro) is a SMS centric platform designed to give sales agents the tools they need to engage and follow up with their clientele.
+[🔥 Firechat Pro](https://firechat.pro) lets users send and receive SMS text messages while managing their client interactions in one simple platform.
 
 ### Features
 
