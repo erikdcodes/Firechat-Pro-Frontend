@@ -62,7 +62,7 @@ const Home = () => {
           );
         })}
         <footer>
-          <div className="container">
+          <div className="footer-container">
             <p>© 2022 Erik De Jesus </p>
             <a href="https://github.com/erikdcodes">@Github</a>
           </div>
@@ -117,7 +117,7 @@ const Wrapper = styled.div`
     color: #fff;
     padding-block: 30px;
   }
-  .container {
+  .footer-container {
     margin-inline: auto;
     width: min(90%, 1140px);
     display: flex;
