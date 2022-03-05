@@ -6,6 +6,7 @@ import useCurrentUser from "../Hooks/useCurrentUser";
 import headerBg from "../Images/bg-pattern-header.svg";
 
 const Home = () => {
+  // on homepage-update branch
   const [currentUser] = useCurrentUser();
   const history = useHistory();
   return (
