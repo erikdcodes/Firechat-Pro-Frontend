@@ -31,7 +31,7 @@ const Home = () => {
       <Wrapper>
         <header>
           <div className="left">
-            <h1 className="title">The gold is in the follow up </h1>
+            <h1 className="title">The fortune is in the follow up </h1>
             <p className="sub-title">
               🔥 Firechat Pro allows you to send and receive text messages while
               managing client interactions all in one simple to use platform.
@@ -135,7 +135,6 @@ const Wrapper = styled.div`
       padding-block: 100px;
       flex-direction: row;
       text-align: left;
-
       .title {
         font-size: 48px;
       }
