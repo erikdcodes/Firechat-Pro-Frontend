@@ -136,6 +136,7 @@ const Wrapper = styled.div`
   height: 60px;
   border-bottom: 2px solid ${styleVariables.bgColor1};
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding: 0 ${styleVariables.padding3};

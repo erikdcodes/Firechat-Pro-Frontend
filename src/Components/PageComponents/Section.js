@@ -7,7 +7,7 @@ const Section = ({ title, description, img, orientation }) => {
     <>
       {orientation !== "standard" ? (
         <Wrapper>
-          <div className="container">
+          <div className="container flex">
             <div className="left">
               <h2 className="title">{title}</h2>
               <p className="description">{description}</p>
@@ -23,7 +23,7 @@ const Section = ({ title, description, img, orientation }) => {
         </Wrapper>
       ) : (
         <Wrapper className="flipped">
-          <div className="container">
+          <div className="container flex reverse">
             <div className="right">
               <img
                 className="hero-img"
@@ -49,11 +49,18 @@ const Wrapper = styled.section`
   background: ${styleVariables.bgColor1};
 
   .container {
-    display: flex;
-    justify-content: space-evenly;
     margin-inline: auto;
     width: min(90%, 1140px);
+  }
+
+  .flex {
+    display: flex;
     gap: 45px;
+    text-align: center;
+    flex-direction: column;
+  }
+  .flex.reverse {
+    flex-direction: column-reverse;
   }
 
   &.flipped {
@@ -84,5 +91,14 @@ const Wrapper = styled.section`
   .description {
     font-size: ${styleVariables.textSize};
     color: ${styleVariables.secondaryTextColor};
+  }
+
+  @media (min-width: 1140px) {
+    .flex,
+    .flex.reverse {
+      text-align: left;
+
+      flex-direction: row;
+    }
   }
 `;

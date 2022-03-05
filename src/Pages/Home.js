@@ -61,6 +61,7 @@ const Home = () => {
             />
           );
         })}
+
         <footer>
           <div className="footer-container">
             <p>© 2022 Erik De Jesus </p>
@@ -74,15 +75,17 @@ const Home = () => {
 
 const Wrapper = styled.div`
   header {
-    height: calc(100vh - 80px);
-    background: url(${headerBg}) no-repeat fixed right top;
+    height: calc(min-content - 80px);
+    background: url(${headerBg}) no-repeat fixed left;
     margin-inline: auto;
     width: min(90%, 1440px);
-    padding-block: 100px;
+    padding-block: 10px;
     display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
 
     .title {
-      font-size: 48px;
+      font-size: 36px;
       line-height: 1.4;
       color: ${styleVariables.accentColorBlue};
       text-transform: capitalize;
@@ -90,7 +93,7 @@ const Wrapper = styled.div`
 
     .sub-title {
       margin-top: 15px;
-      font-size: 24px;
+      font-size: 18px;
       line-height: 1.8;
       color: ${styleVariables.primaryTextColor};
     }
@@ -109,6 +112,7 @@ const Wrapper = styled.div`
     button {
       padding: 15px 20px;
       max-width: 400px;
+      max-width: 100%;
       font-size: 24px;
     }
   }
@@ -123,6 +127,22 @@ const Wrapper = styled.div`
     display: flex;
     gap: 15px;
     justify-content: center;
+  }
+
+  @media (min-width: 1140px) {
+    header {
+      background: url(${headerBg}) no-repeat fixed right top;
+      padding-block: 100px;
+      flex-direction: row;
+      text-align: left;
+
+      .title {
+        font-size: 48px;
+      }
+      .sub-title {
+        font-size: 24px;
+      }
+    }
   }
 `;
 
