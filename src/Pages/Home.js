@@ -47,7 +47,7 @@ const Home = () => {
             )}
           </div>
           <div className="right">
-            <img src="/hero-img-2.jpeg" alt="" />
+            <img src="/hero-img-2.jpeg" alt="firechat pro header img" />
           </div>
         </header>
         {sections.map((section, i) => {
