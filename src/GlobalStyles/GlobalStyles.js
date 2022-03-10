@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { styleVariables } from "./StyleVariables.js";
 import { darken } from "polished";
-import { keyframes } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
 * {
