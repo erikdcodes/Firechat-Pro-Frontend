@@ -83,7 +83,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column-reverse;
     text-align: center;
-    animation: fadeIn 2000ms linear;
+    animation: fadeIn 2000ms ease;
 
     .title {
       font-size: 36px;
