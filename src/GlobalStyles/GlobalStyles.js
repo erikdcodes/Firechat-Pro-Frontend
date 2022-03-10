@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import { styleVariables } from "./StyleVariables.js";
 import { darken } from "polished";
+import { keyframes } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
 * {
@@ -165,4 +166,14 @@ export const GlobalStyles = createGlobalStyle`
     display: none;
   }
 }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 `;

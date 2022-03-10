@@ -83,6 +83,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column-reverse;
     text-align: center;
+    animation: fadeIn 2000ms linear;
 
     .title {
       font-size: 36px;
@@ -105,8 +106,14 @@ const Wrapper = styled.div`
       justify-content: center;
     }
 
+    .right {
+      width: 100%;
+      height: 100%;
+    }
+
     .right img {
       width: 100%;
+      height: 100%;
     }
 
     button {
