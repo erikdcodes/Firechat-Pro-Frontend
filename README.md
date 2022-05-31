@@ -1,6 +1,6 @@
 # 🔥 Firechat Pro - Front End Client
 
-[🔥 Firechat Pro](https://firechat.pro) lets users send and receive SMS text messages while managing their client interactions in one simple platform.
+[🔥 Firechat Pro](https://firechat.pro) lets users send and receive SMS text messages while managing their client interactions in one simple to use platform.
 
 ### Features
 
